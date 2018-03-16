@@ -48,6 +48,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         }
 
         legend {
+			
             color:red;
             text-shadow: 2px 2px 3px rgba(150, 150, 150, 0.75);
             font-family:Verdana, Geneva, sans-serif;
@@ -60,8 +61,13 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             -moz-box-shadow: 4px 4px 5px rgba(50, 50, 50, 0.75);
             box-shadow: 4px 4px 5px rgba(50, 50, 50, 0.75);
             padding: 3px;
+			
         }
-
+#fi{
+	Background-Color:#AFAFAF;
+	
+	
+}
 
     </style>
     <script type="text/javascript" src="js/jquery-2.1.4.min.js"></script>
@@ -135,13 +141,13 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     <div class="col-sm-12 " >
         <form method="post" action="" enctype="multipart/form-data"  >
 
-            <fieldset  class="border" >
-                <legend>Sujets Proposés:</legend>
+            <fieldset  class="border" id="fi" style="border-color:red">
+                <legend style="border-color:red">Sujets Proposés:</legend>
 
-                <div class="col-sm-12">
-                    <fieldset >
+                <div class="col-sm-12" >
+                    <fieldset  >
 
-                        <legend>Informations Personnelles:</legend>
+                        <legend style="border-color:red">Informations Personnelles:</legend>
                         <div class="row">
                             <label class="col-sm-4"> Nom: </label><br><br>
                             <label class="col-sm-4"> Prénom:</label><br><br>
@@ -152,38 +158,59 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                     <div class="col-sm-12">
                         <fieldset >
 
-                            <legend>Liste du theme:</legend>
+                            <legend style="border-color:red">Liste du theme:</legend>
                             <div class="col-sm-6">
 
                             <div class="row">
                                 <label class="col-sm-2 col-sm-offset-3 ">Theme1</label><br>
                                 <label class="col-sm-2">Titre</label><input class="col-sm-7 "type="text" name="titre1"/>
-                                <textarea name="intitule1"  rows="10" cols="50"> </textarea>
+								 <select id="monselect">
+  <option value="GL">GL</option> 
+  <option value="RSD" selected>RSD</option>
+  <option value="SIC">SIC</option>
+</select>
+                                <textarea name="intitule1"  rows="10" cols="55"> </textarea>
                             </div></div>
                             <div class="col-sm-6">
 
                             <div class="row">
                                 <label class="col-sm-2 col-sm-offset-3 ">Theme2</label><br>
                                 <label class="col-sm-2">Titre</label><input class="col-sm-7 " type="text" name="titre1"/>
-                                <textarea name="intitule1"  rows="10" cols="50"> </textarea>
+                                <select id="monselect">
+  <option value="GL">GL</option> 
+  <option value="RSD" selected>RSD</option>
+  <option value="SIC">SIC</option>
+</select>
+                                <textarea name="intitule1"  rows="10" cols="55"> </textarea>
                             </div></div>
                         </div>
                     <div class="col-sm-6">
 
-                        <div class="row">
-                            <label class="col-sm-2 col-sm-offset-3 ">Theme3</label><br>
-                            <label class="col-sm-2">Titre</label><input class="col-sm-7 " type="text" name="titre1"/>
-                            <textarea name="intitule1"  rows="10" cols="50"> </textarea>
+                         <div class="row">
+                                <label class="col-sm-2 col-sm-offset-3 ">Theme3</label><br>
+                                <label class="col-sm-2">Titre</label><input class="col-sm-7 "type="text" name="titre1"/>
+							 <select id="monselect">
+ <option value="GL">GL</option> 
+ <option value="RSD" selected>RSD</option>
+  <option value="SIC">SIC</option>
+</select>
+                                <textarea name="intitule1"  rows="10" cols="55"> </textarea>
                         </div></div>
                     <div class="col-sm-6">
 
                         <div class="row">
                             <label class="col-sm-2 col-sm-offset-3 ">Theme4</label><br>
                             <label class="col-sm-2">Titre</label><input class="col-sm-7 " type="text" name="titre1"/>
-                            <textarea name="intitule1"  rows="10" cols="50"> </textarea>
+                            <select id="monselect">
+  <option value="GL">GL</option> 
+  <option value="RSD" selected>RSD</option>
+  <option value="SIC">SIC</option>
+</select>
+                                <textarea name="intitule1"  rows="10" cols="55"> </textarea>
                         </div></div>
                 </div>
                             <div class="col-md-6 col-md-offset-5"> </label class="inline"> <input  type='submit' name='submit' class='btn btn-danger' value='Enregistrer'  ></div>
+                        </fieldset>
                         </fieldset>
         </form>
     </div>
