@@ -16,7 +16,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     <!-- js -->
     <style>
         #id{
-            background: url(images/hy.jpg) no-repeat 0px 0px;
+            background: url(images/theme.jpg) no-repeat 20px -300px;
 
             background-size: cover;
             -webkit-background-size: cover;
@@ -105,7 +105,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             </div>
             <!-- Collect the nav links, forms, and other content for toggling -->
             <ul class="top-links">
-                <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                <li><a href="#"><i class="fa fa-facebook" ></i></a></li>
                 <li><a href="#"><i class="fa fa-twitter"></i></a></li>
                 <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
                 <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
@@ -115,7 +115,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
                     <li class="active" ><a href="#">Proposer Sujet</a></li>
                     <li><a href="contact.html">Contact</a></li>
-                    <li><a href="portfolio.html">Deconnexion</a></li>
+                    <li><a href="deconnexion.php">Deconnexion</a></li>
 
                 </ul>
             </div>
