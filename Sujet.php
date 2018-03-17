@@ -16,7 +16,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     <!-- js -->
     <style>
         #id{
-            background: url(images/theme.jpg) no-repeat 20px -300px;
+            background: url(images/hy.jpg) no-repeat 20px -300px;
 
             background-size: cover;
             -webkit-background-size: cover;
@@ -63,11 +63,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             padding: 3px;
 			
         }
-#fi{
-	Background-Color:#9E9E9E;
+
 	
-	
-}
+
 
     </style>
     <script type="text/javascript" src="js/jquery-2.1.4.min.js"></script>
@@ -141,13 +139,13 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     <div class="col-sm-12 " >
         <form method="post" action="" enctype="multipart/form-data"  >
 
-            <fieldset  class="border" id="fi" style="border-color:red">
-                <legend style="border-color:red">Sujets Proposés:</legend>
+            <fieldset  class="border" >
+                <legend >Sujets Proposés:</legend>
 
                 <div class="col-sm-12" >
                     <fieldset  >
 
-                        <legend style="border-color:red">Informations Personnelles:</legend>
+                        <legend >Informations Personnelles:</legend>
                         <div class="row">
                             <label class="col-sm-4"> Nom: </label><br><br>
                             <label class="col-sm-4"> Prénom:</label><br><br>
@@ -158,7 +156,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                     <div class="col-sm-12">
                         <fieldset >
 
-                            <legend style="border-color:red">Liste du theme:</legend>
+                            <legend >Liste du theme:</legend>
                             <div class="col-sm-6">
 
                             <div class="row">
@@ -211,7 +209,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                 </div>
                             <div class="col-md-6 col-md-offset-5"> </label class="inline"> <input  type='submit' name='submit' class='btn btn-danger' value='Enregistrer'  ></div>
                         </fieldset>
-                        </fieldset>
+                      
         </form>
     </div>
 </div>
