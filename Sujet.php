@@ -16,7 +16,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     <!-- js -->
     <style>
         #id{
-            background: url(images/hy.jpg) no-repeat 20px -300px;
+            background: url(images/hy.jpg) no-repeat 0px 0px;
 
             background-size: cover;
             -webkit-background-size: cover;
@@ -48,7 +48,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         }
 
         legend {
-			
             color:red;
             text-shadow: 2px 2px 3px rgba(150, 150, 150, 0.75);
             font-family:Verdana, Geneva, sans-serif;
@@ -61,10 +60,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             -moz-box-shadow: 4px 4px 5px rgba(50, 50, 50, 0.75);
             box-shadow: 4px 4px 5px rgba(50, 50, 50, 0.75);
             padding: 3px;
-			
         }
-
-	
 
 
     </style>
@@ -103,7 +99,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             </div>
             <!-- Collect the nav links, forms, and other content for toggling -->
             <ul class="top-links">
-                <li><a href="#"><i class="fa fa-facebook" ></i></a></li>
+                <li><a href="#"><i class="fa fa-facebook"></i></a></li>
                 <li><a href="#"><i class="fa fa-twitter"></i></a></li>
                 <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
                 <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
@@ -113,7 +109,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
                     <li class="active" ><a href="#">Proposer Sujet</a></li>
                     <li><a href="contact.html">Contact</a></li>
-                    <li><a href="deconnexion.php">Deconnexion</a></li>
+                    <li><a href="portfolio.html">Deconnexion</a></li>
 
                 </ul>
             </div>
@@ -140,12 +136,12 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         <form method="post" action="" enctype="multipart/form-data"  >
 
             <fieldset  class="border" >
-                <legend >Sujets Proposés:</legend>
+                <legend>Sujets Proposés:</legend>
 
-                <div class="col-sm-12" >
-                    <fieldset  >
+                <div class="col-sm-12">
+                    <fieldset >
 
-                        <legend >Informations Personnelles:</legend>
+                        <legend>Informations Personnelles:</legend>
                         <div class="row">
                             <label class="col-sm-4"> Nom: </label><br><br>
                             <label class="col-sm-4"> Prénom:</label><br><br>
@@ -156,60 +152,30 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                     <div class="col-sm-12">
                         <fieldset >
 
-                            <legend >Liste du theme:</legend>
-                            <div class="col-sm-6">
+                            <legend>Liste du theme:</legend>
+                            <?php
+                            for ($i = 1; $i <3; $i++) {
+                            echo "
+                            <div class='col-sm-6'>
 
-                            <div class="row">
-                                <label class="col-sm-2 col-sm-offset-3 ">Theme1</label><br>
-                                <label class="col-sm-2">Titre</label><input class="col-sm-7 "type="text" name="titre1"/>
-								 <select id="monselect">
-  <option value="GL">GL</option> 
-  <option value="RSD" selected>RSD</option>
-  <option value="SIC">SIC</option>
-</select>
-                                <textarea name="intitule1"  rows="10" cols="55"> </textarea>
-                            </div></div>
-                            <div class="col-sm-6">
+                            <div class='row'>
+                                <label class='col-sm-2 col-sm-offset-2' >Theme1</label><br>
+                                <select>
+<option value='GL'> GL </option>
+<option value='RSD'> RSD </option>
+<option value='SIC'> SIC </option>
+<option value='SIC'> MID </option>
 
-                            <div class="row">
-                                <label class="col-sm-2 col-sm-offset-3 ">Theme2</label><br>
-                                <label class="col-sm-2">Titre</label><input class="col-sm-7 " type="text" name="titre1"/>
-                                <select id="monselect">
-  <option value="GL">GL</option> 
-  <option value="RSD" selected>RSD</option>
-  <option value="SIC">SIC</option>
-</select>
-                                <textarea name="intitule1"  rows="10" cols="55"> </textarea>
-                            </div></div>
-                        </div>
-                    <div class="col-sm-6">
 
-                         <div class="row">
-                                <label class="col-sm-2 col-sm-offset-3 ">Theme3</label><br>
-                                <label class="col-sm-2">Titre</label><input class="col-sm-7 "type="text" name="titre1"/>
-							 <select id="monselect">
- <option value="GL">GL</option> 
- <option value="RSD" selected>RSD</option>
-  <option value="SIC">SIC</option>
 </select>
-                                <textarea name="intitule1"  rows="10" cols="55"> </textarea>
-                        </div></div>
-                    <div class="col-sm-6">
+                                <label class='col-sm-2'>Titre</label><input class='col-sm-7 ' type='text' name='titre1'/>
+                                <textarea name='intitule1'  rows='10' cols='50'> </textarea>
+                            </div></div> ";}
 
-                        <div class="row">
-                            <label class="col-sm-2 col-sm-offset-3 ">Theme4</label><br>
-                            <label class="col-sm-2">Titre</label><input class="col-sm-7 " type="text" name="titre1"/>
-                            <select id="monselect">
-  <option value="GL">GL</option> 
-  <option value="RSD" selected>RSD</option>
-  <option value="SIC">SIC</option>
-</select>
-                                <textarea name="intitule1"  rows="10" cols="55"> </textarea>
-                        </div></div>
-                </div>
-                            <div class="col-md-6 col-md-offset-5"> </label class="inline"> <input  type='submit' name='submit' class='btn btn-danger' value='Enregistrer'  ></div>
-                        </fieldset>
-                      
-        </form>
-    </div>
-</div>
+?>
+                    </div>
+                               <div class="col-md-6 col-md-offset-5"> </label class="inline"> <input  type='submit' name='submit' class='btn btn-danger' value='Enregistrer'  ></div>
+                           </fieldset>
+           </form>
+       </div>
+   </div>
