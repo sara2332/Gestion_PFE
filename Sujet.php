@@ -1,5 +1,24 @@
+<?php
+include("cnxbdd.php");
+if(isset($_POST['submit'])) {
+    $sql1=$db->prepare('select nbr from nbrsujet');
+    $sql1->execute();
+    $result = $sql1->fetch();
+
+    /** @var TYPE_NAME $result  renvoi le nbr de sujet proposée par chaque enseignant*/
+    for ($i = 1; $i <= $result ['nbr']; $i++) {
+        $specialite = implode(', ', $_POST["specialite'$i'"]);
+
+        $sql = $db->prepare('insert into theme (intitule,specialite,statut) 
+ values (?,?,?)');
+        $params = array($_POST["titre'$i'"], $specialite, 0);
+        $sql->execute($params);
+
+    }
+}
+    ?>
 <!DOCTYPE html>
-<html lang="en">
+<body lang="en">
 <head>
     <title>PFE MANAGER</title>
     <!-- for-mobile-apps -->
@@ -82,7 +101,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     <!-- start-smoth-scrolling -->
 </head>
 
-<body>
+<div>>
 <!-- banner -->
 <div id="id" class="banner two" >
     <div class="container">
@@ -130,7 +149,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 </div><br>
 <!-- //banner -->
 <!-- /single-page -->
-
+<body>
 <div class="container">
     <div class="col-sm-12 " >
         <form method="post" action="" enctype="multipart/form-data"  >
@@ -154,12 +173,31 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
                             <legend>Liste du theme:</legend>
                             <?php
+<<<<<<< HEAD
+                            $sql=$db->prepare('select nbr from nbrsujet');
+                            $sql->execute();
+                            $result = $sql->fetch();
+
+                            for ($i = 1; $i <=$result['nbr']; $i++) {
+=======
                             for ($i = 1; $i <3; $i++) {
+>>>>>>> 492518204ab738ef54838a6de9059c6f4eebab8e
                             echo "
                             <div class='col-sm-6'>
 
                             <div class='row'>
                                 <label class='col-sm-2 col-sm-offset-2' >Theme1</label><br>
+<<<<<<< HEAD
+                                <select multiple name=\"specialite'$i'[]\">
+<option value='GL'> GL </option>
+<option value='RSD'> RSD </option>
+<option value='SIC'> SIC </option>
+<option value='MID'> MID </option>
+
+
+</select>
+                                <label class='col-sm-2'>Titre</label><input class='col-sm-7 ' type='text' name=\"titre'$i'\"/>
+=======
                                 <select>
 <option value='GL'> GL </option>
 <option value='RSD'> RSD </option>
@@ -170,6 +208,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 </select>
                                 <label class='col-sm-2'>Titre</label><input class='col-sm-7 ' type='text' name='titre1'/>
                                 <textarea name='intitule1'  rows='10' cols='50'> </textarea>
+>>>>>>> 492518204ab738ef54838a6de9059c6f4eebab8e
                             </div></div> ";}
 
 ?>
@@ -179,3 +218,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
            </form>
        </div>
    </div>
+<<<<<<< HEAD
+</div>
+</body>
+</html>
+=======
+>>>>>>> 492518204ab738ef54838a6de9059c6f4eebab8e
