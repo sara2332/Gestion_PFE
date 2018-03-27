@@ -20,6 +20,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <link href="css/style.css" rel="stylesheet" type="text/css" media="all" />
 <link href="css/font-awesome.min.css" rel="stylesheet" type="text/css" media="all" />
 
+
 <link href='//fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,400italic,600,600italic,700,700italic,800,800italic' rel='stylesheet' type='text/css'>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <style>
@@ -143,12 +144,37 @@ span.psw {
        width: 100%;
     }
 }
+legend {
+            color:red;
+            text-shadow: 2px 2px 3px rgba(150, 150, 150, 0.75);
+            font-family:Verdana, Geneva, sans-serif;
+            font-size:1.4em;
+            border-top: 2px solid #009;
+            border-left: 2px solid #009;
+            border-right:  2px solid #009;
+            border-radius: 10px;
+            -webkit-box-shadow: 4px 4px 5px rgba(50, 50, 50, 0.75);
+            -moz-box-shadow: 4px 4px 5px rgba(50, 50, 50, 0.75);
+            box-shadow: 4px 4px 5px rgba(50, 50, 50, 0.75);
+            padding: 3px;
+        }
+		.border {
+            border: 1px solid #009;
+            -webkit-border-radius: 10px;
+            -moz-border-radius: 10px;
+            border-radius: 10px;
+            -webkit-box-shadow: 4px 4px 5px rgba(50, 50, 50, 0.75);
+            -moz-box-shadow: 4px 4px 5px rgba(50, 50, 50, 0.75);
+            box-shadow: 4px 4px 5px rgba(50, 50, 50, 0.75);
+            Background-Color: #BCC4C3
+        ;
 </style>
 <!-- start-smoth-scrolling -->
 </head>
 	
 <body>
 <!-- banner -->
+
 	<div class="banner">
 		<div class="container">
 			<nav class="navbar navbar-default">
@@ -169,10 +195,7 @@ span.psw {
 									<li><a href="#"><i class="fa fa-google-plus"></i></a></li>
 								</ul>
 				<div class="collapse navbar-collapse navbar-right" id="bs-example-navbar-collapse-1">
-					    <ul class="nav navbar-nav">
-          							 
-								<li  class="active"><a href="#"><b>Acceuil</b></a></li> 
-         						 </ul>
+					    
        						 </div>
         				<!-- /.navbar-collapse -->
 						 </nav>	   
@@ -186,8 +209,7 @@ span.psw {
 						<ul class="rslides" id="slider3">
 							<li>
 								<div class="w3l_banner_info">
-									 <h4>Initiate</h4>
-<button onclick="document.getElementById('id01').style.display='block'" class="hvr-underline-from-center read" style="width:auto;">Connexion</button>
+<button onclick="document.getElementById('id01').style.display='block'" class="hvr-underline-from-center read" style="width:150px;">Connexion </button>
 
 <div id="id01" class="modal">
   
@@ -195,9 +217,9 @@ span.psw {
     <div class="imgcontainer">
       <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">&times;</span>
     </div>
-
+<form action="connexion.php" method="POST">
     <div class="container">
-      <label for="uname"><b>E-mail</b></label>
+      <label for="uname"><b>Username</b></label>
       <input type="text" placeholder="Enter Username" name="uname" required>
 
       <label for="psw"><b>Password</b></label>
@@ -210,65 +232,14 @@ span.psw {
     </div>
 
     <div class="container" style="background-color:#f1f1f1">
-      <button type="button" onclick="document.getElementById('id02').style.display='none'" class="cancelbtn">Annuler</button>
+      <button type="button" onclick="document.getElementById('id02').style.display='none'" class="cancelbtn">Cancel</button>
       <span class="psw">Forgot <a href="#">password?</a></span>
     </div>
-  </form>
+
 </div>	
-<button onclick="document.getElementById('id02').style.display='block'" style="width:auto;">Inscrivez-Vous</button>
-
-<div id="id02" class="modal">
-  <span onclick="document.getElementById('id02').style.display='none'" class="close" title="Close Modal">&times;</span>
-  <form class="modal-content" action="/action_page.php">
-    <div class="container">
-      <h1>Inscription</h1>
-      <hr>
-		<label for="nom"><b>Nom</b></label>
-		<input type="text" placeholder="Entrer nom" name="nom" required>
-		<label for="prenom"><b>Prénom</b></label>
-		<input type="text" placeholder="Entrer prenom" name="prenom" required>
-		<label for="date_n"><b>Date Naissance</b></label>
-		<input type="date" placeholder="Entrer la date de naissance" name="date_n" required>&nbsp;&nbsp;&nbsp;
-		<label for="specialite"><b>Spécialité</b></label>
-		<select  name=\"specialite\">
-			<option value='GL'> GL </option>
-			<option value='RSD'> RSD </option>
-			<option value='SIC'> SIC </option>
-			<option value='MID'> MID </option>
-
-		</select>&nbsp;&nbsp;&nbsp;
-		<label for="grade"><b>Grade</b></label>
-		<select  name=\"specialite\">
-			<option value='MCA'> MCA </option>
-			<option value='MAA'> MAA </option>
-			<option value='MCB'> MCB </option>
-			<option value='MAB'> MAB </option>
-			<option value='MAB'> Docteur </option>
-			<option value='Professeur'> Professeur </option>
-
-		</select>
-
-		<label for="email"><b>Email</b></label>
-      <input type="text" placeholder="Entrer Email" name="email" required>
-
-      <label for="psw"><b>Password</b></label>
-      <input type="password" placeholder="Enter Password" name="psw" required>
-
-      <label for="psw-repeat"><b>Repeat Password</b></label>
-      <input type="password" placeholder="Repeat Password" name="psw-repeat" required>
-      
-      <label>
-        <input type="checkbox" checked="checked" name="remember" style="margin-bottom:15px"> Remember me
-      </label>
-
-
-      <div class="clearfix">
-        <button type="button" onclick="document.getElementById('id02').style.display='none'" class="cancelbtn">Annuler</button>
-        <button type="submit1" class="signupbtn"></button>
-      </div>
-    </div>
   </form>
-</div>
+
+
 
 							</div>
 							</li>
@@ -280,214 +251,39 @@ span.psw {
 				
 						</div>			
 					</div>
+					<div class="container">
+    <div class="col-sm-8 col-sm-offset-2" >
+        <form method="post" action="" enctype="multipart/form-data"  >
+
+        <fieldset  class="border" >
+    <legend>Planning Soutenance:</legend>
+	  <table border="1"  style="width:650px "  class="table table-striped table-hover table-bordered " align="center"><thead>
+
+
+                <tr><th align="center"> Code Soutenance </th>
+                    <th align="center"> Date Soutenance </th>
+                    <th align="center">Heure Soutenance</th>
+                    <th align="center">Salle</th>
+
+                </tr></thead>
+
+	
+	</fieldset>
+
 <!-- //banner -->	
 <!-- about -->
-   <div class="about" id="about">
-        <div class="container">
-			 <div class="wthree-about">
-				  <div class="col-md-5 wthree-ab-left">
-				      <img src="images/ab.jpg" class="responsive" alt=" " />
-                  </div>
-				  <div class="col-md-7 wthree-ab-right">
-				     <h2>A Few Words About Us</h2>
-				     <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.Lorem Ipsum has been the industry's standard dummy text ever since, Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.</p>
-					 <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.Lorem Ipsum has been the industry's standard dummy text ever since, Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.</p>
-					 <a href="single.html" class="hvr-underline-from-center read">Read More</a>
-				  </div>
-				  <div class="clearfix"></div>
-			 </div>
-		</div>
-	</div>
+   
 <!--// about -->
 <!---->
-<div class="content-bottom">
-		<div class="content-in">
-            <div class="port effect-1">
-                <div class="image-box">
-                   <img src="images/g1.jpg" alt="" class="img-responsive">
-               </div>
-                <div class="text-desc">
-                    <h6>Controller</h6>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor .</p>
-                </div>
-           </div>
-         </div>
-		<div class="content-in">
-            <div class="port effect-1">
-                <div class="image-box">
-                    <img src="images/g2.jpg" alt="" class="img-responsive">
-                </div>
-				<div class="text-desc">
-                    <h6>Controller</h6>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor .</p>	
-                </div>
-            </div>
-        </div>
-		<div class="content-in">
-            <div class="port effect-1">
-                <div class="image-box">
-                    <img src="images/g3.jpg" alt="" class="img-responsive">
-                </div>
-				<div class="text-desc">
-					<h6>Controller</h6>
-					<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor .</p>   	
-				</div>
-			</div>
-        </div>
-		<div class="content-in">
-            <div class="port effect-1">
-                <div class="image-box">
-                    <img src="images/g4.jpg" alt="" class="img-responsive">
-                </div>
-                <div class="text-desc">
-                    <h6>Controller</h6>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor .</p>	
-                </div>
-            </div>
-        </div>
-        <div class="clearfix"> </div>
-</div>
+
 <!---->
  <!-- /services -->
 
 <!-- //client -->
 <!-- /contact -->
-   <div class="contact-main-agile-info" id="contact">
-        <div class="container">
-		   <h3 class="tittle">Contact Us</h3>
-		   <p class="sub">We are waiting your next move </p>
-		  <div class="contact-top-agileits">
-               <div class="col-md-4 contact-grid ">
-					<div class="contact-grid1 agileits-w3layouts">
-						<i class="fa fa-location-arrow"></i>
-						<div class="con-w3l-info">
-						   <h4>Address </h4>
-						  <p>12K Street<span>New York City.</span></p>
-						</div>
-						<div class="clearfix"></div>
-					</div>
-				</div>
-				<div class="col-md-4 contact-grid">
-					<div class="contact-grid2 w3">
-						<i class="fa fa-volume-control-phone"></i>
-						<div class="con-w3l-info">
-						  <h4>Call Us</h4>
-						   <p>+1234 567 890<span>+1234 567 890</span></p>
-						</div>
-						<div class="clearfix"></div>
-					</div>
-				</div>
-				<div class="col-md-4 contact-grid">
-					<div class="contact-grid3 w3l">
-						<i class="fa fa-envelope"></i>
-						<div class="con-w3l-info">
-						  <h4>Email</h4>
-						  <p><a href="mailto:info@example.com">info@example1.com</a>
-						  <span><a href="mailto:info@example.com">info@example2.com</a></span></p>
-						  </div>
-						  <div class="clearfix"></div>
-					</div>
-				</div>
-				<div class="clearfix"></div>
-			</div>
-		  </div>
-   <!-- map -->
-		<div class="map agileits">
-		   <div class="location-mark"><i class="fa fa-map-marker"></i></div>
-			   <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d26359195.17562375!2d-113.7156245614499!3d36.2473834534249!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x54eab584e432360b%3A0x1c3bb99243deb742!2sUnited+States!5e0!3m2!1sen!2sin!4v1471497559566"  frameborder="0" style="border:0" allowfullscreen></iframe>
-					<div class="map-grids">
-					    <h4>Send Us a Message Now</h4>
-						<form action="#" method="post">
-						<input type="text" name="Your Name" placeholder="Your Name" required=" ">
-						<input type="text" name="Your Email" placeholder="Your Email" required=" ">
-						<textarea name="Your Message" placeholder="Your Message" required=""></textarea>
-						<input type="submit" value="SUBMIT">
-					</form>
-					
-				</div>
-			
-		</div>
-		<!-- //map -->
-  </div>
+ 
   <!-- Footer -->
-	<div class="w3l-footer">
-		<div class="container">
-         <div class="footer-info-agile">
-				<div class="col-md-2 footer-info-grid links">
-					<h4>QUICK LINKS</h4>
-					<ul>
-						       <li><a href="index.html">Home</a></li> 
-								<li><a href="about.html">About</a></li> 
-								<li><a href="codes.html">Services</a></li> 
-								<li><a href="portfolio.html">Portfolio</a></li> 
-								<li><a href="contact.html">Contact</a></li> 
-					</ul>
-				</div>
-				<div class="col-md-3 footer-info-grid address">
-					<h4>ADDRESS</h4>
-					<address>
-						<ul>
-							<li>London Victoria 3000</li>
-							<li>40019 King Street Melbourne</li>
-							<li>BO,London</li>
-							<li>Telephone : +1 (734) 123-4567</li>
-							<li>Email : <a class="mail" href="mailto:mail@example.com">info(at)example.com</a></li>
-						</ul>
-					</address>
-				</div>
-				<div class="col-md-3 footer-grid">
-				   <h4>INSTAGRAM</h4>
-					<div class="footer-grid-instagram">
-					<a href="#"><img src="images/f1.jpg" alt=" " class="img-responsive"></a>
-					</div>
-					<div class="footer-grid-instagram">
-					<a href="#"><img src="images/f2.jpg" alt=" " class="img-responsive"></a>
-					</div>
-					<div class="footer-grid-instagram">
-						<a href="#"><img src="images/f3.jpg" alt=" " class="img-responsive"></a>
-					</div>
-					<div class="footer-grid-instagram">
-					<a href="#"><img src="images/f4.jpg" alt=" " class="img-responsive"></a>
-					</div>
-					<div class="clearfix"> </div>
-				</div>
-				<div class="col-md-4 footer-info-grid newsletter">
-					<h4>NEWSLETTER</h4>
-					<p>Subscribe to our newsletter and we will inform you about newest projects and promotions.
-					</p>
-
-					<form action="#" method="post" class="newsletter">
-						<input class="email" type="email" placeholder="Your email...">
-						<input type="submit" class="submit" value="">
-					</form>
-				</div>
-				<div class="clearfix"></div>
-			</div>
-
-			<div class="connect-agileits">
-				<div class="connect-social">
-					<h4>CONNECT WITH US</h4>
-					<section class="social">
-                        <ul>
-							<li><a class="icon fb" href="#"><i class="fa fa-facebook"></i></a></li>
-							<li><a class="icon tw" href="#"><i class="fa fa-twitter"></i></a></li>
-							<li><a class="icon rss" href="#"><i class="fa fa-rss"></i></a></li>
-							<li><a class="icon lin" href="#"><i class="fa fa-linkedin"></i></a></li>
-							<li><a class="icon pin" href="#"><i class="fa fa-pinterest"></i></a></li>
-							<li><a class="icon db" href="#"><i class="fa fa-dribbble"></i></a></li>
-							<li><a class="icon gp" href="#"><i class="fa fa-google-plus"></i></a></li>
-						</ul>
-					</section>
-
-				</div>
-			</div>
-
-			<div class="copyright-wthree">
-				<p>&copy; 2017 Controller. All Rights Reserved | Design by <a href="http://w3layouts.com/"> W3layouts </a></p>
-			</div>
-
-		</div>
-	</div>
+	
 <!-- for bootstrap working -->
 <!-- js -->
 <script type="text/javascript" src="js/jquery-2.1.4.min.js"></script>
