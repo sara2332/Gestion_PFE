@@ -1,10 +1,10 @@
 <?php
-$login=$_POST['username'];
-$pass=$_POST['password'];
+$login=$_POST['uname'];
+$pass=$_POST['psw'];
 
 require_once("connexion.php");
 
-$ps=$pdo->prepare("SELECT * FROM user WHERE login=? AND password=?");
+$ps=$pdo->prepare("SELECT * FROM user WHERE email=? AND password=?");
 $params=array($login,$pass);
 $ps->execute($params);
 
