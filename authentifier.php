@@ -1,32 +1,54 @@
 <?php
+include("cnxbdd.php");
+
 $login=$_POST['uname'];
-$pass=$_POST['psw'];
+$passwor=$_POST['psw'];
 
-require_once("connexion.php");
+if(!empty($login) and !empty($passwor))
+{
+    $ps=$db->prepare("SELECT * FROM etudiant WHERE login=? AND password=?");
+    $params=array($login,$passwor);
+    $ps->execute($params);
 
-$ps=$pdo->prepare("SELECT * FROM user WHERE email=? AND password=?");
-$params=array($login,$pass);
-$ps->execute($params);
+    $ps1=$db->prepare('SELECT * FROM enseignant WHERE login=? AND password=? ');
+    $params=array($login,$passwor);
+    $ps1->execute($params);
 
-
-if($user=$ps->fetch()){
-	session_start();
-$_SESSION['profil']=$user;
-	
-	if($_SESSION['profil']['role']=='etudiant'){
-	header("location:etudiant.php");}
-	
-	elseif($_SESSION['profil']['role']=='enseignant'){
-	header("location:enseignant.php");}
-	
-	elseif($_SESSION['profil']['role']=='administration'){
-	header("location:administration.php");}
-
-}
+    $p=$db->prepare("SELECT * FROM administrateur WHERE login=? AND password=?");
+    $param=array($login,$passwor);
+    $p->execute($param);
 
 
-else{
-	header("location:index.html");
+
+    if($use=$ps1->fetch()){
+        $id1=$use['id_ens'];
+
+        session_start();
+        $_SESSION['profil']=$use;
+        header ("location:enseignant.php?ens=$id1");
+    }
+    else if
+    ($use=$ps->fetch()){
+        $id3=$use['NumeroEtudiant'];
+
+        session_start();
+        $_SESSION['pro']=$use;
+        header ("location:etudiant.php?etu=$id3");
+
+    }
+    else if
+    ($use=$p->fetch()){
+        $id=$use['id_ad'];
+
+        session_start();
+        $_SESSION['profi']=$use;
+        header ("location:administrateur.php?admin=$id");
+
+    }
+
+    else {
+        header("location:acceuil.php");
+    }
 }
 
 ?>

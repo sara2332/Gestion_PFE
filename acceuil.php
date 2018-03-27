@@ -4,6 +4,7 @@ author URL: http://w3layouts.com
 License: Creative Commons Attribution 3.0 Unported
 License URL: http://creativecommons.org/licenses/by/3.0/
 -->
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -191,7 +192,7 @@ span.psw {
 
 <div id="id01" class="modal">
   
-  <form class="modal-content animate" method="post" action="authentifier.php">
+  <form class="modal-content animate" action="authentifier.php" method="post">
     <div class="imgcontainer">
       <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">&times;</span>
     </div>
@@ -219,7 +220,7 @@ span.psw {
 
 <div id="id02" class="modal">
   <span onclick="document.getElementById('id02').style.display='none'" class="close" title="Close Modal">&times;</span>
-  <form class="modal-content" method="post" action="inscription.php">
+  <form class="modal-content" action="inscription.php" method="post" enctype="multipart/form-data">
     <div class="container">
       <h1>Inscription</h1>
       <hr>
@@ -228,22 +229,25 @@ span.psw {
 		<label for="prenom"><b>Prénom</b></label>
 		<input type="text" placeholder="Entrer prenom" name="prenom" required>
 		<label for="date_n"><b>Date Naissance</b></label>
-		<input type="date" placeholder="Entrer la date de naissance" name="date_n" required>&nbsp;&nbsp;&nbsp;
+		<input type="date" placeholder="Entrer la date de naissance" name="date_n">&nbsp;&nbsp;&nbsp;
 		<label for="specialite"><b>Spécialité</b></label>
-		<select  name=\"specialite\">
-			<option value='GL'> GL </option>
+		<select  name="specialite">
+            <option ></option>
+
+            <option value='GL'> GL </option>
 			<option value='RSD'> RSD </option>
 			<option value='SIC'> SIC </option>
 			<option value='MID'> MID </option>
 
 		</select>&nbsp;&nbsp;&nbsp;
 		<label for="grade"><b>Grade</b></label>
-		<select  name=\"specialite\">
-			<option value='MCA'> MCA </option>
+		<select  name="grade">
+            <option  ></option>
+
+            <option value='MCA'> MCA </option>
 			<option value='MAA'> MAA </option>
 			<option value='MCB'> MCB </option>
 			<option value='MAB'> MAB </option>
-			<option value='MAB'> Docteur </option>
 			<option value='Professeur'> Professeur </option>
 
 		</select>
@@ -254,9 +258,8 @@ span.psw {
       <label for="psw"><b>Password</b></label>
       <input type="password" placeholder="Enter Password" name="psw" required>
 
-      <label for="role"><b>Role</b></label>
-      <input type="text" placeholder="Entrer etudiant ou enseignant ou administration" name="role" required>
-	  
+      <label for="psw-repeat"><b>Repeat Password</b></label>
+      <input type="password" placeholder="Repeat Password" name="psw-repeat" required>
       
       <label>
         <input type="checkbox" checked="checked" name="remember" style="margin-bottom:15px"> Remember me
@@ -265,7 +268,7 @@ span.psw {
 
       <div class="clearfix">
         <button type="button" onclick="document.getElementById('id02').style.display='none'" class="cancelbtn">Annuler</button>
-        <button type="submit1" class="signupbtn"></button>
+        <button type="submit" name="submit1"  class="signupbtn"></button>
       </div>
     </div>
   </form>
