@@ -187,7 +187,7 @@ span.psw {
 							<li>
 								<div class="w3l_banner_info">
 									 <h4>Initiate</h4>
-<button onclick="document.getElementById('id01').style.display='block'" class="hvr-underline-from-center read" style="width:auto;">Login</button>
+<button onclick="document.getElementById('id01').style.display='block'" class="hvr-underline-from-center read" style="width:auto;">Connexion</button>
 
 <div id="id01" class="modal">
   
@@ -197,35 +197,59 @@ span.psw {
     </div>
 
     <div class="container">
-      <label for="uname"><b>Username</b></label>
+      <label for="uname"><b>E-mail</b></label>
       <input type="text" placeholder="Enter Username" name="uname" required>
 
       <label for="psw"><b>Password</b></label>
       <input type="password" placeholder="Enter Password" name="psw" required>
         
-      <button type="submit">Login</button>
+      <button type="submit">Connexion</button>
       <label>
         <input type="checkbox" checked="checked" name="remember"> Remember me
       </label>
     </div>
 
     <div class="container" style="background-color:#f1f1f1">
-      <button type="button" onclick="document.getElementById('id02').style.display='none'" class="cancelbtn">Cancel</button>
+      <button type="button" onclick="document.getElementById('id02').style.display='none'" class="cancelbtn">Annuler</button>
       <span class="psw">Forgot <a href="#">password?</a></span>
     </div>
   </form>
 </div>	
-<button onclick="document.getElementById('id02').style.display='block'" style="width:auto;">Sign Up</button>
+<button onclick="document.getElementById('id02').style.display='block'" style="width:auto;">Inscrivez-Vous</button>
 
 <div id="id02" class="modal">
   <span onclick="document.getElementById('id02').style.display='none'" class="close" title="Close Modal">&times;</span>
   <form class="modal-content" method="post" action="inscription.php">
     <div class="container">
-      <h1>Sign Up</h1>
-      <p>Please fill in this form to create an account.</p>
+      <h1>Inscription</h1>
       <hr>
-      <label for="email"><b>Email</b></label>
-      <input type="text" placeholder="Enter Email" name="email" required>
+		<label for="nom"><b>Nom</b></label>
+		<input type="text" placeholder="Entrer nom" name="nom" required>
+		<label for="prenom"><b>Prénom</b></label>
+		<input type="text" placeholder="Entrer prenom" name="prenom" required>
+		<label for="date_n"><b>Date Naissance</b></label>
+		<input type="date" placeholder="Entrer la date de naissance" name="date_n" required>&nbsp;&nbsp;&nbsp;
+		<label for="specialite"><b>Spécialité</b></label>
+		<select  name=\"specialite\">
+			<option value='GL'> GL </option>
+			<option value='RSD'> RSD </option>
+			<option value='SIC'> SIC </option>
+			<option value='MID'> MID </option>
+
+		</select>&nbsp;&nbsp;&nbsp;
+		<label for="grade"><b>Grade</b></label>
+		<select  name=\"specialite\">
+			<option value='MCA'> MCA </option>
+			<option value='MAA'> MAA </option>
+			<option value='MCB'> MCB </option>
+			<option value='MAB'> MAB </option>
+			<option value='MAB'> Docteur </option>
+			<option value='Professeur'> Professeur </option>
+
+		</select>
+
+		<label for="email"><b>Email</b></label>
+      <input type="text" placeholder="Entrer Email" name="email" required>
 
       <label for="psw"><b>Password</b></label>
       <input type="password" placeholder="Enter Password" name="psw" required>
@@ -238,11 +262,10 @@ span.psw {
         <input type="checkbox" checked="checked" name="remember" style="margin-bottom:15px"> Remember me
       </label>
 
-      <p>By creating an account you agree to our <a href="#" style="color:dodgerblue">Terms & Privacy</a>.</p>
 
       <div class="clearfix">
-        <button type="button" onclick="document.getElementById('id02').style.display='none'" class="cancelbtn">Cancel</button>
-        <button type="submit1" class="signupbtn">Sign Up</button>
+        <button type="button" onclick="document.getElementById('id02').style.display='none'" class="cancelbtn">Annuler</button>
+        <button type="submit1" class="signupbtn"></button>
       </div>
     </div>
   </form>
