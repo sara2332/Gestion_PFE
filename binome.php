@@ -1,4 +1,25 @@
+<?php
+session_start();
+if(!(isset($_SESSION['etudiant']))){
+    header("location:acceuil.php");
+}
+?>
+<?php
+include("cnxbdd.php");
 
+$etu=$_GET['etu'];
+$total = $db->prepare('
+        SELECT
+          *
+        FROM
+            etudiant where NumeroEtudiant= ?');
+$params=array($etu);
+
+$total->execute($params);
+$sql=$total->fetch();
+
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -140,12 +161,12 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
                         <legend>Informations Personnelles:</legend>
                         <div class="row">
-                            <label class="col-sm-4"> Nom etudiant(1): </label><br><br>
-                            <label class="col-sm-4"> Prénom etudiant(1):</label><br><br>
+                            <label class="col-sm-4"> Nom etudiant(1): <?php echo( $sql['Nom'])    ?>  </label><br><br>
+                            <label class="col-sm-6"> Prénom etudiant(1):  <?php echo( $sql['Prenom'])    ?></label><br><br>
 
                             <label class="col-sm-4"> Nom etudiant(2): </label><input type="text" name="nom"/><br><br>
                             <label class="col-sm-4"> Prénom etudiant(2):</label> <input type="text" name="prenom"/><br><br>
-                            <label class="col-sm-4"> Spécialité:</label>
+                            <label class="col-sm-4"> Spécialité:  <?php echo( $sql['specialite'])    ?></label>
                         </div><br>
                     </fieldset>
                     <div class="col-sm-12">
@@ -156,67 +177,157 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                             <div class="row">
 
                                 <label class="col-sm-2 col-sm-offset-2">Choix1</label>
-                                <select name='choix1' class="col-sm-4">
-                                    <option value=''>Theme1</option>
-                                    <option value=''>Theme2</option>
-                                    <option value=''>Theme3</option>
-                                    <option value=''>Theme4</option>
-                                    <option value=''>Theme5</option>
-                                    <option value=''>Theme6</option>
-                                    <option value=''>Theme7</option>
-                                </select>
+                                <?php
+                                include("cnxbdd.php");
+
+
+                                $stmt = $db->prepare("
+       SELECT * FROM theme where specialite LIKE '%{$sql['specialite']}%'
+	   
+");
+                                $stmt->execute();
+                                $st=$stmt->fetchAll();
+
+
+                                echo"
+<form>
+<select name='choix1' >
+
+";
+                                foreach($st as $row){
+                                    echo"
+<option value='". $row['intitule'] ."'> ". $row['intitule'] ."</option>";
+                                }
+                                echo"
+
+</select>
+</form>";
+
+                                ?>
+
                             </div><br>
                             <div class="row">
 
                                 <label class="col-sm-2 col-sm-offset-2">Choix2</label>
-                                <select name='choix2' class="col-sm-4">
-                                    <option value=''>Theme1</option>
-                                    <option value=''>Theme2</option>
-                                    <option value=''>Theme3</option>
-                                    <option value=''>Theme4</option>
-                                    <option value=''>Theme5</option>
-                                    <option value=''>Theme6</option>
-                                    <option value=''>Theme7</option>
-                                </select>
+                                <?php
+                                include("cnxbdd.php");
+
+
+                                $stmt = $db->prepare("
+       SELECT * FROM theme where specialite LIKE '%{$sql['specialite']}%'
+	   
+");
+                                $stmt->execute();
+                                $st=$stmt->fetchAll();
+
+
+                                echo"
+<form>
+<select name='choix2' >
+
+";
+                                foreach($st as $row){
+                                    echo"
+<option value='". $row['intitule'] ."'> ". $row['intitule'] ."</option>";
+                                }
+                                echo"
+
+</select>
+</form>";
+
+                                ?>
                             </div><br>
                             <div class="row">
 
                                 <label class="col-sm-2 col-sm-offset-2">Choix3</label>
-                                <select name='choix3' class="col-sm-4">
-                                    <option value=''>Theme1</option>
-                                    <option value=''>Theme2</option>
-                                    <option value=''>Theme3</option>
-                                    <option value=''>Theme4</option>
-                                    <option value=''>Theme5</option>
-                                    <option value=''>Theme6</option>
-                                    <option value=''>Theme7</option>
-                                </select>
+                                <?php
+                                include("cnxbdd.php");
+
+
+                                $stmt = $db->prepare("
+       SELECT * FROM theme where specialite LIKE '%{$sql['specialite']}%'
+	   
+"); $stmt->execute();
+                                $st=$stmt->fetchAll();
+
+
+                                echo"
+<form>
+<select name='choix3' >
+
+";
+                                foreach($st as $row){
+                                    echo"
+<option value='". $row['intitule'] ."'> ". $row['intitule'] ."</option>";
+                                }
+                                echo"
+
+</select>
+</form>";
+
+                                ?>
                             </div><br>
                             <div class="row">
 
                                 <label class="col-sm-2 col-sm-offset-2">Choix4</label>
-                                <select name='choix4' class="col-sm-4">
-                                    <option value=''>Theme1</option>
-                                    <option value=''>Theme2</option>
-                                    <option value=''>Theme3</option>
-                                    <option value=''>Theme4</option>
-                                    <option value=''>Theme5</option>
-                                    <option value=''>Theme6</option>
-                                    <option value=''>Theme7</option>
-                                </select>
+                                <?php
+                                include("cnxbdd.php");
+
+
+                                $stmt = $db->prepare("
+       SELECT * FROM theme where specialite LIKE '%{$sql['specialite']}%'
+	   
+");
+                                $stmt->execute();
+                                $st=$stmt->fetchAll();
+
+
+                                echo"
+<form>
+<select name='choix4' >
+
+";
+                                foreach($st as $row){
+                                    echo"
+<option value='". $row['intitule'] ."'> ". $row['intitule'] ."</option>";
+                                }
+                                echo"
+
+</select>
+</form>";
+
+                                ?>
                             </div><br>
                             <div class="row">
 
                                 <label class="col-sm-2 col-sm-offset-2">Choix5</label>
-                                <select name='choix5' class="col-sm-4">
-                                    <option value=''>Theme1</option>
-                                    <option value=''>Theme2</option>
-                                    <option value=''>Theme3</option>
-                                    <option value=''>Theme4</option>
-                                    <option value=''>Theme5</option>
-                                    <option value=''>Theme6</option>
-                                    <option value=''>Theme7</option>
-                                </select>
+                                <?php
+                                include("cnxbdd.php");
+
+
+                                $stmt = $db->prepare("
+       SELECT * FROM theme where specialite LIKE '%{$sql['specialite']}%'
+	   
+");
+                                $stmt->execute();
+                                $st=$stmt->fetchAll();
+
+
+                                echo"
+<form>
+<select name='choix5' >
+
+";
+                                foreach($st as $row){
+                                    echo"
+<option value='". $row['intitule'] ."'> ". $row['intitule'] ."</option>";
+                                }
+                                echo"
+
+</select>
+</form>";
+
+                                ?>
                             </div><br>
                             <div class="col-md-6 col-md-offset-5"> </label class="inline"> <input  type='submit' name='submit' class='btn btn-danger' value='Enregistrer'  ></div>
                         </fieldset>
