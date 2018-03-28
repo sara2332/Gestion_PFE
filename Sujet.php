@@ -1,4 +1,27 @@
 <?php
+session_start();
+if(!(isset($_SESSION['enseignant']))){
+    header("location:acceuil.php");
+}
+?>
+<?php
+include("cnxbdd.php");
+
+$ens=$_GET['ens'];
+$total = $db->prepare('
+        SELECT
+          *
+        FROM
+            enseignant where id_ens= ?');
+$params=array($ens);
+
+$total->execute($params);
+$sql=$total->fetch(PDO::FETCH_ASSOC);
+
+
+?>
+
+<?php
 include("cnxbdd.php");
 if(isset($_POST['submit'])) {
     $sql1=$db->prepare('select nbr from nbrsujet');
@@ -9,14 +32,14 @@ if(isset($_POST['submit'])) {
     for ($i = 1; $i <= $result ['nbr']; $i++) {
         $specialite = implode(', ', $_POST["specialite'$i'"]);
 
-        $sql = $db->prepare('insert into theme (intitule,specialite,statut) 
- values (?,?,?)');
-        $params = array($_POST["titre'$i'"], $specialite, 0);
+        $sql = $db->prepare('insert into theme (intitule,id_ens,specialite,statut) 
+ values (?,?,?,?)');
+        $params = array($_POST["titre'$i'"],$ens, $specialite, 0);
         $sql->execute($params);
 
     }
 }
-    ?>
+?>
 <!DOCTYPE html>
 <body lang="en">
 <head>
@@ -102,92 +125,88 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 </head>
 
 <div>>
-<!-- banner -->
-<div id="id" class="banner two" >
-    <div class="container">
-        <nav class="navbar navbar-default">
-            <div class="navbar-header navbar-left">
-                <img height='100 px' width='200 px' src='./images/151871840444015710.png' />
+    <!-- banner -->
+    <div id="id" class="banner two" >
+        <div class="container">
+            <nav class="navbar navbar-default">
+                <div class="navbar-header navbar-left">
+                    <img height='100 px' width='200 px' src='./images/151871840444015710.png' />
 
-                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-            </div>
-            <!-- Collect the nav links, forms, and other content for toggling -->
-            <ul class="top-links">
-                <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
-                <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
-            </ul>
-            <div class="collapse navbar-collapse navbar-right" id="bs-example-navbar-collapse-1">
-                <ul class="nav navbar-nav">
-
-                    <li class="active" ><a href="#">Proposer Sujet</a></li>
-                    <li><a href="contact.html">Contact</a></li>
-                    <li><a href="portfolio.html">Deconnexion</a></li>
-
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                </div>
+                <!-- Collect the nav links, forms, and other content for toggling -->
+                <ul class="top-links">
+                    <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                    <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                    <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
+                    <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
                 </ul>
-            </div>
-            <!-- /.navbar-collapse -->
-        </nav>
-        <script>
-            $('ul.nav li.dropdown').hover(function() {
-                $(this).find('.dropdown-menu').stop(true, true).delay(200).fadeIn(500);
-            }, function() {
-                $(this).find('.dropdown-menu').stop(true, true).delay(200).fadeOut(500);
-            });
-        </script>
-    </div>
-    <div class="clearfix"></div>
+                <div class="collapse navbar-collapse navbar-right" id="bs-example-navbar-collapse-1">
+                    <ul class="nav navbar-nav">
 
-    <div class="w3l-sub-head">
-    </div>
-</div><br>
-<!-- //banner -->
-<!-- /single-page -->
-<body>
-<div class="container">
-    <div class="col-sm-12 " >
-        <form method="post" action="" enctype="multipart/form-data"  >
+                        <li class="active" ><a href="#">Proposer Sujet</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                        <li><a href="portfolio.html">Deconnexion</a></li>
 
-            <fieldset  class="border" >
-                <legend>Sujets Proposés:</legend>
+                    </ul>
+                </div>
+                <!-- /.navbar-collapse -->
+            </nav>
+            <script>
+                $('ul.nav li.dropdown').hover(function() {
+                    $(this).find('.dropdown-menu').stop(true, true).delay(200).fadeIn(500);
+                }, function() {
+                    $(this).find('.dropdown-menu').stop(true, true).delay(200).fadeOut(500);
+                });
+            </script>
+        </div>
+        <div class="clearfix"></div>
 
-                <div class="col-sm-12">
-                    <fieldset >
+        <div class="w3l-sub-head">
+        </div>
+    </div><br>
+    <!-- //banner -->
+    <!-- /single-page -->
+    <body>
+    <div class="container">
+        <div class="col-sm-12 " >
+            <form method="post" action="" enctype="multipart/form-data"  >
 
-                        <legend>Informations Personnelles:</legend>
-                        <div class="row">
-                            <label class="col-sm-4"> Nom: </label><br><br>
-                            <label class="col-sm-4"> Prénom:</label><br><br>
-                            <label class="col-sm-4"> Grade:</label>
+                <fieldset  class="border" >
+                    <legend>Sujets Proposés:</legend>
 
-                        </div><br>
-                    </fieldset>
                     <div class="col-sm-12">
                         <fieldset >
 
-                            <legend>Liste du theme:</legend>
-                            <?php
-<<<<<<< HEAD
-                            $sql=$db->prepare('select nbr from nbrsujet');
-                            $sql->execute();
-                            $result = $sql->fetch();
+                            <legend>Informations Personnelles:</legend>
+                            <div class="row">
+                                <label class="col-sm-4"> Nom:  <?php echo ($sql['Nom'] );  ?> </label><br><br>
+                                <label class="col-sm-4"> Prénom:  <?php echo( $sql['Prenom']);   ?> </label><br><br>
+                                <label class="col-sm-4"> Grade:  <?php echo( $sql['Grade']) ;   ?> </label>
 
-                            for ($i = 1; $i <=$result['nbr']; $i++) {
-=======
-                            for ($i = 1; $i <3; $i++) {
->>>>>>> 492518204ab738ef54838a6de9059c6f4eebab8e
-                            echo "
+                            </div><br>
+                        </fieldset>
+                        <div class="col-sm-12">
+                            <fieldset >
+
+                                <legend>Liste du theme:</legend>
+                                <?php
+                                $sql=$db->prepare('select nbr from nbrsujet');
+                                $sql->execute();
+                                $result = $sql->fetch();
+
+                                for ($i = 1; $i <=$result['nbr']; $i++) {
+                                    echo "
+                           
                             <div class='col-sm-6'>
 
                             <div class='row'>
                                 <label class='col-sm-2 col-sm-offset-2' >Theme1</label><br>
-<<<<<<< HEAD
                                 <select multiple name=\"specialite'$i'[]\">
 <option value='GL'> GL </option>
 <option value='RSD'> RSD </option>
@@ -197,30 +216,17 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
 </select>
                                 <label class='col-sm-2'>Titre</label><input class='col-sm-7 ' type='text' name=\"titre'$i'\"/>
-=======
-                                <select>
-<option value='GL'> GL </option>
-<option value='RSD'> RSD </option>
-<option value='SIC'> SIC </option>
-<option value='SIC'> MID </option>
-
-
-</select>
-                                <label class='col-sm-2'>Titre</label><input class='col-sm-7 ' type='text' name='titre1'/>
-                                <textarea name='intitule1'  rows='10' cols='50'> </textarea>
->>>>>>> 492518204ab738ef54838a6de9059c6f4eebab8e
+                                
                             </div></div> ";}
 
-?>
-                    </div>
-                               <div class="col-md-6 col-md-offset-5"> </label class="inline"> <input  type='submit' name='submit' class='btn btn-danger' value='Enregistrer'  ></div>
-                           </fieldset>
-           </form>
-       </div>
-   </div>
-<<<<<<< HEAD
+                                ?>
+                        </div>
+                        <div class="col-md-6 col-md-offset-5"> </label class="inline"> <input  type='submit' name='submit' class='btn btn-danger' value='Enregistrer'  ></div>
+                </fieldset>
+            </form>
+        </div>
+    </div>
 </div>
 </body>
 </html>
-=======
->>>>>>> 492518204ab738ef54838a6de9059c6f4eebab8e
+
