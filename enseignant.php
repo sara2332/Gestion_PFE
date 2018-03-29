@@ -3,12 +3,10 @@ session_start();
 if(!(isset($_SESSION['enseignant']))){
     header("location:acceuil.php");
 }
-?>
-<?php
-
 $ens=$_GET['ens'];
 
 ?>
+
 
 <html>
 
@@ -41,8 +39,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
 
 
-<br>
-<body background="images\f.jpg" width='20%' height='20%'>
+
 <div class="container">
 
     <div class="col-sm-8">
@@ -55,7 +52,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
 </div>
 
-</br>
+</body>
 <div class="container">
     <div class="col-sm-8">
         <div class='row'>
@@ -64,7 +61,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         <div class='row'>
             <div class='col-sm-4'>
 
-                <a href='#'> <img src='images/f.jpg' class='img-circle' height='100px' width='100px'/><b><font size=5 color='blue'>Validation Sujet</font></b></a></br></div></div><br>
+                <?php echo " <a href='validationSujet.php?ens=$ens'>";?> <img src='images/affecter.jpg' class='img-circle' height='100px' width='100px'/><b><font size=5 color='blue'>Validation Sujet</font></b></a></br></div></div><br>
         <div class='row'>
             <div class='col-sm-6 '>
 

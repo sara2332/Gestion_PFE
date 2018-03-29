@@ -24,7 +24,7 @@ if(!empty($login) and !empty($passwor))
         $id1=$use['id_ens'];
 
         session_start();
-        $_SESSION['profil']=$use;
+        $_SESSION['enseignant']=$use;
         header ("location:enseignant.php?ens=$id1");
     }
     else if
@@ -32,7 +32,7 @@ if(!empty($login) and !empty($passwor))
         $id3=$use['NumeroEtudiant'];
 
         session_start();
-        $_SESSION['pro']=$use;
+        $_SESSION['etudiant']=$use;
         header ("location:etudiant.php?etu=$id3");
 
     }
@@ -41,7 +41,7 @@ if(!empty($login) and !empty($passwor))
         $id=$use['id_ad'];
 
         session_start();
-        $_SESSION['profi']=$use;
+        $_SESSION['administrateur']=$use;
         header ("location:administrateur.php?admin=$id");
 
     }

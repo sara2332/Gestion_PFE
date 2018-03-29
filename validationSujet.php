@@ -1,5 +1,27 @@
+<?php
+session_start();
+if(!(isset($_SESSION['enseignant']))){
+    header("location:acceuil.php");
+}
+
+?>
+<?php
+
+$ens=$_GET['ens'];
+
+?>
+
+<?php
+include("cnxbdd.php");
+
+
+$stmt = $db->prepare('
+       SELECT intitule,specialite FROM theme');
+
+?>
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <title>PFE MANAGER</title>
     <!-- for-mobile-apps -->
@@ -135,6 +157,18 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                 $(this).find('.dropdown-menu').stop(true, true).delay(200).fadeOut(500);
             });
         </script>
+		<script>
+	
+	function ConfirmDelete()
+{
+  var x = confirm("voulez vous vraiment supprimer?");
+  if (x==true)
+  { return true;}
+  else
+  {return false;}
+}
+	
+	</script>
     </div>
     <div class="clearfix"></div>
 
@@ -151,7 +185,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
 
                 <tr><th align="center"> Thème </th>
-                    <th align="center"> Enseignant </th>
                     <th align="center">Spécialité</th>
                     <th align="center">Valider</th>
                     <th align="center">Supprimer</th>
@@ -159,11 +192,116 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                 </tr></thead>
 
         </fieldset>
-        <tr><td align="center"><a href="#">1</a></td><td></td><td></td>
-            <td align="center"><a href='#'><i style='color:red'  class='fa fa-check-square-o'></i></a></td>
+       <?php
+       include("cnxbdd.php");
 
-            <td align='center'><a href='#' onClick='ConfirmDelete()'>
-                    <i style="color:green" class="fa fa-times-circle-o"  ></i></a></td></tr>
-    </table>
+
+       try {
+
+        // Find out how many items are in the table
+        $total = $db->query('
+        SELECT
+        COUNT(*)
+        FROM
+theme        ')->fetchColumn();
+
+        // How many items to list per page
+        $limit = 8;
+
+        // How many pages will there be
+        $pages = ceil($total / $limit);
+
+        // What page are we currently on?
+        $page = min($pages, filter_input(INPUT_GET, 'page', FILTER_VALIDATE_INT, array(
+        'options' => array(
+        'default'   => 1,
+        'min_range' => 1,
+        ),
+        )));
+
+        // Calculate the offset for the query
+        $offset = ($page - 1)  * $limit;
+
+        // Some information to display to the user
+        $start = $offset + 1;
+        $end = min(($offset + $limit), $total);
+        // The "back" link
+        $prevlink = ($page > 1) ? '<a href="?ens='.$ens.'&amp;page=1" title="premier page"> <i style="color:green" class="fa fa- fa-caret-left fa-lg"  ></i></a>
+        <a href="?ens='.$ens.'&amp;page=' . ($page - 1) . '" title="page précédent"> &nbsp;&nbsp;<i style="color:red" class="fa fa- fa-hand-o-left fa-lg"  ></i> &nbsp;&nbsp  </a>':
+        ' <span class="disabled"> &nbsp; <i style="color:green" class="fa fa- fa-caret-left fa-lg"  ></i></span>
+        <span class="disabled"> &nbsp;&nbsp;<i style="color:red" class="fa fa- fa-hand-o-left fa-lg"  ></i></span>';
+
+
+
+
+        // The "forward" link
+        $nextlink = ($page < $pages) ? '<a href="?ens='.$ens.'&amp;page=' . ($page + 1) . '" title="page suivant"> &nbsp;&nbsp;
+            <i style="color:red" class="fa  fa-hand-o-right fa-lg"  ></i> &nbsp;
+
+        </a> <a href="?ens='.$ens.'&amp;page=' . $pages . ' " title="dernière page">  &nbsp;
+            <i  size="6" style="color:green " class="fa  fa-caret-right fa-lg"></i>
+        </a>' : '<span class="disabled">&nbsp;
+<i style="color:red" class="fa fa- fa-hand-o-right fa-lg"  ></i>
+</span>
+        <span class="disabled">&nbsp;<i style="color:green" class="fa fa- fa-caret-right fa-lg"  ></i>
+';
+
+    // Display the paging information
+
+    // Prepare the paged query
+    $stmt = $db->prepare('
+       SELECT * FROM theme
+        ORDER BY
+            id_theme
+			asc
+        LIMIT
+            :limit
+        OFFSET
+            :offset
+    ');
+
+    // Bind the query params
+    $stmt->bindParam(':limit', $limit, PDO::PARAM_INT);
+    $stmt->bindParam(':offset', $offset, PDO::PARAM_INT);
+    $stmt->execute();
+
+    // Do we have any results?
+    if ($stmt->rowCount() > 0) {
+        // Define how we want to fetch the results
+        $stmt->setFetchMode(PDO::FETCH_ASSOC);
+        $iterator = new IteratorIterator($stmt);
+$stmt->bindColumn(1, $id);
+$stmt->bindColumn(2, $cover, PDO::PARAM_LOB);
+        // Display the results
+        foreach ($iterator as $ligne) {
+
+
+{
+	$id1 =$ligne["id_theme"];
+echo "<tr><td>".$id1."</td><td>".$ligne["intitule"]."</td><td>".$ligne["specialite"]."</td>
+
+<td align='center'><a href='supprimerSujet.php?sup=$id1&amp;ens=$ens' onClick='ConfirmDelete()'><i style=\"color:green\" class=\"fa fa-trash-o\"  ></i></a></td></tr>";
+}
+		}
+
+?>
+
+
+            </table><br>
+            <?php
+            echo '<div id="paging" align="center"><p>', $prevlink, '<b>' ,'&nbsp;&nbsp;&nbsp;','<span style="color:red">', $page,'</span>', ' / ','<span style="color:red">', $pages,'</span>', $nextlink, '</p></div>';
+            } else {
+                echo '<p>No results could be displayed.</p>';
+            }
+
+            } catch (Exception $e) {
+                echo '<p>', $e->getMessage(), '</p>';
+            }
+
+?>
+
     </div>
 </div>
+</div>
+</body>
+</html>
