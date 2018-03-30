@@ -10,6 +10,22 @@ if(!(isset($_SESSION['enseignant']))){
 $ens=$_GET['ens'];
 
 ?>
+<?php
+include("cnxbdd.php");
+
+
+if(isset($_POST['submit'])) {
+    $id=$_POST["id"];
+    $specialite = implode(', ', $_POST["specialite"]);
+    $sql = $db->prepare('update  theme set specialite=? where id_theme=? ');
+    $params = array( $specialite,$id);
+    $sql->execute($params);
+
+
+}
+
+?>
+
 
 <?php
 include("cnxbdd.php");
@@ -19,11 +35,19 @@ $stmt = $db->prepare('
        SELECT intitule,specialite FROM theme');
 
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
     <title>PFE MANAGER</title>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.7.5/css/bootstrap-select.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.7.5/js/bootstrap-select.min.js"></script>
+
+
     <!-- for-mobile-apps -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -86,6 +110,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
 
     </style>
+
     <script type="text/javascript" src="js/jquery-2.1.4.min.js"></script>
     <!-- //js -->
     <link href='//fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,400italic,600,600italic,700,700italic,800,800italic' rel='stylesheet' type='text/css'>
@@ -144,7 +169,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                 </li>
                     <li ><a href="index.html">Affecter Sujet</a></li>
                     <li><a href="contact.html">Contact</a></li>
-                    <li><a href="portfolio.html">Deconnexion</a></li>
+                    <li><a href="logout.php">Deconnexion</a></li>
 
                 </ul>
             </div>
@@ -178,10 +203,10 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <!-- //banner -->
 <!-- /single-page -->
 <div class="container">
-    <div class="col-sm-12">
+    <div class="col-sm-10">
         <fieldset  class="border">
             <legend>Liste des Thèmes:</legend>
-            <table border="1" style="width:1000px "  class="table table-striped table-hover table-bordered "><thead>
+            <table border="1" style="width:900px "  class="table table-striped table-hover table-bordered "><thead>
 
 
                 <tr><th align="center"> Thème </th>
@@ -267,7 +292,7 @@ theme        ')->fetchColumn();
 
     // Do we have any results?
     if ($stmt->rowCount() > 0) {
-        // Define how we want to fetch the results
+        // Define how we want to fetch the resultsm
         $stmt->setFetchMode(PDO::FETCH_ASSOC);
         $iterator = new IteratorIterator($stmt);
 $stmt->bindColumn(1, $id);
@@ -278,10 +303,29 @@ $stmt->bindColumn(2, $cover, PDO::PARAM_LOB);
 
 {
 	$id1 =$ligne["id_theme"];
-echo "<tr><td>".$id1."</td><td>".$ligne["intitule"]."</td><td>".$ligne["specialite"]."</td>
+echo "<td>".$ligne["intitule"]."</td><td align='center'>".$ligne["specialite"]."</td>
+<td align='center' ><form action='' method='post'>
+<select  class=\"selectpicker\" data-style=\"btn-default
+\" multiple name='specialite[]'>
+<option value='GL'> GL </option>
+<option value='RSD'> RSD </option>
+<option value='SIC'> SIC </option>
+<option value='MID'> MID </option>
+<input type='submit' class=\"btn-save btn btn-link btn-lg\" name= 'submit' value='☑' style='color:red' >
 
-<td align='center'><a href='supprimerSujet.php?sup=$id1&amp;ens=$ens' onClick='ConfirmDelete()'><i style=\"color:green\" class=\"fa fa-trash-o\"  ></i></a></td></tr>";
-}
+</select><br>
+<input type='hidden'  name='id' value= '$id1' >
+
+
+</form>
+</td>
+
+ <td align='center'><a class=\"delete_product\" data-id=\" $id1\" href=\"javascript:void(0)\">
+                <i style='color:black' class=\"glyphicon glyphicon-trash\"></i>
+                </a></td></tr>";
+                
+                
+                }
 		}
 
 ?>
@@ -303,5 +347,80 @@ echo "<tr><td>".$id1."</td><td>".$ligne["intitule"]."</td><td>".$ligne["speciali
     </div>
 </div>
 </div>
+
+    <script>
+    $(document).ready(function(){
+
+        $('.delete_product').click(function(e){
+
+            e.preventDefault();
+
+            var pid = $(this).attr('data-id');
+            var parent = $(this).parent("td").parent("tr");
+
+            bootbox.dialog({
+                message: "Voulez Vous Supprimer ?",
+                title: "<i class='glyphicon glyphicon-trash'></i> Delete !",
+                buttons: {
+                    success: {
+                        label: "NON",
+                        className: "btn-success",
+                        callback: function() {
+                            $('.bootbox').modal('hide');
+                        }
+                    },
+                    danger: {
+                        label: "OUI",
+                        className: "btn-danger",
+                        callback: function() {
+
+                            /*
+
+                            using $.ajax();
+
+                            $.ajax({
+
+                                type: 'POST',
+                                url: 'delete.php',
+                                data: 'delete='+pid
+
+                            })
+                            .done(function(response){
+
+                                bootbox.alert(response);
+                                parent.fadeOut('slow');
+
+                            })
+                            .fail(function(){
+
+                                bootbox.alert('Something Went Wrog ....');
+
+                            })
+                            */
+
+
+                            $.post('delete.php', { 'delete':pid })
+                                .done(function(response){
+                                    bootbox.alert(response);
+                                    parent.fadeOut('slow');
+                                })
+                                .fail(function(){
+                                    bootbox.alert('Something Went Wrog ....');
+                                })
+
+                        }
+                    }
+                }
+            });
+
+
+        });
+
+    });
+</script>
+<script src="jquery-1.12-0.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="bootbox.min.js"></script>
+
 </body>
 </html>
