@@ -217,7 +217,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
             // Prepare the paged query
             $stmt = $db->prepare('
-       SELECT * FROM etudiant
+       SELECT * FROM etudiant where specialite="SIC"
         ORDER BY
             NumeroEtudiant
 			asc
