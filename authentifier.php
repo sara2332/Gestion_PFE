@@ -42,7 +42,7 @@ if(!empty($login) and !empty($passwor))
 
         session_start();
         $_SESSION['administrateur']=$use;
-        header ("location:administrateur.php?admin=$id");
+        header ("location:admin.php?admin=$id");
 
     }
 

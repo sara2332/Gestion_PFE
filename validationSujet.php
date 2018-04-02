@@ -17,8 +17,8 @@ include("cnxbdd.php");
 if(isset($_POST['submit'])) {
     $id=$_POST["id"];
     $specialite = implode(', ', $_POST["specialite"]);
-    $sql = $db->prepare('update  theme set specialite=? where id_theme=? ');
-    $params = array( $specialite,$id);
+    $sql = $db->prepare('update  theme set specialite=?,statut=? where id_theme=? ');
+    $params = array( $specialite,1,$id);
     $sql->execute($params);
 
 

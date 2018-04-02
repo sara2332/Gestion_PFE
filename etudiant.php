@@ -30,7 +30,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 </script>
 <style>
     body{
-        background-image:url(images/g3.jpg);
+        background-image:url(images/cs.jpg);
 
         background-size:cover;
         background-repeat:no-repeat
@@ -58,7 +58,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         <div class='row'>
             <div class='col-sm-8 col-sm-offset-3'>
 
-                <a href='#'> <img src='images/g3.jpg' class='img-circle' height='100px' width='100px'/><b><font size=5 color='blue'> Liste Sujet</font></b></a></br></div></div><br>
+                <a href='#'> <img src='images/g3.jpg' class='img-circle' height='100px' width='100px'/><b><font size=5 color='#ff4500'> Liste Sujet</font></b></a></br></div></div><br>
 
 
 
@@ -67,26 +67,18 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
             <div class='col-sm-8 col-sm-offset-2'>
 
-                <a href='#'> <img src='images/g3.jpg' class='img-circle' height='100px' width='100px'/><b><font size=5 color='blue'> Affectation Sujet</font></b></a></br></div></div><br>
+                    <?php echo "<a href='monome.php?etu=$etu'>";?> <img src='images/fiche.jpg' class='img-circle' height='100px' width='100px' ></img><b><font size=5 color='#ff4500'> Fiche De Voeux</font></b></a>
+                </div></div><br>
 
-        <div class='col-sm-8  col-sm-offset-2'>
+
+
+        <div class='col-sm-8  col-sm-offset-3'>
             <div class='row'>
 
-                <a href='#' class="dropdown-toggle" data-toggle="dropdown"> <img src='images/fiche.jpg' class='img-circle' height='100px' width='100px' ></img><b><font size=5 color='blue'> Fiche De Voeux</font></b></a>
-            </div></div><br>
+            <a href='#'> <img src='images/g3.jpg' class='img-circle' height='100px' width='100px'/><b><font size=5 color='#ff4500'> Affectation Sujet</font></b></a></br></div></div><br>
 
-        <div class='col-sm-6'>
-            <div class='row'>
-                <div class='col-sm-5'>
 
-                    <?php echo "   <a href='monome.php?etu=$etu'>";?> <img src='images/monome.jpg' class='img-circle' height='80px' width='80px'/><b><font size=5 color='red'> Monome</font></b></a></div>
-
-                <div class='col-sm-3 col-sm-offset-3'>
-
-                    <?php echo "   <a href='binome.php?etu=$etu'> ";?><img src='images/binome.jpg' class='img-circle' height='80px' width='80px'/><b><font size=5 color='red'> Binome</font></b></a></div><br>
-
-            </div>
-        </div><br>
+        <br>
 
 
 

@@ -49,8 +49,8 @@ $nom2=$_POST['nom2'];
 
     $nom = $sql['Nom'] . " " . $sql['Prenom']. "," .$nom2. " " .$prenom2 ;
     $sql1 = $db->prepare('
-        insert into fichevoeux(moyenne,etudiant,specialite,choix1,choix2,choix3,choix4,choix5)
-            values (?,?,?,?,?,?,?,?)');
+        insert into fichevoeux(moyenne,etudiant,specialite,choix1,choix2,choix3,choix4,choix5,voeux)
+            values (?,?,?,?,?,?,?,?,"")');
     $params = array($moy, $nom,$specialite, $choix1, $choix2, $choix3, $choix4, $choix5);
 
     $sql1->execute($params);
@@ -170,18 +170,18 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             </ul>
             <div class="collapse navbar-collapse navbar-right" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
-                    <li ><a href="index.html">Home</a></li>
+                    <li ><a href="acceuil.php">Themes</a></li>
 
 
                     <li  class="dropdown active" >
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">Fiche de Voeux <b class="caret"></b></a>
                         <ul class="dropdown-menu">
-                            <li ><a href="codes.html">Monome</a></li>
-                            <li class="active"><a href="codes.html">Binome</a></li>
+                            <li ><?php echo "<a href='monome.php?etu=$etu'>";?>Monome</a></li>
+                            <li class="active"><a href="#">Binome</a></li>
                         </ul>
                     </li>
-                    <li><a href="contact.html">Contact</a></li>
-                    <li><a href="portfolio.html">Deconnexion</a></li>
+                    <li><a href="contact.html">Affectation Themes</a></li>
+                    <li><a href="logout.php">Deconnexion</a></li>
 
                 </ul>
             </div>
@@ -239,7 +239,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
 
                                     $stmt = $db->prepare("
-       SELECT * FROM theme where specialite LIKE '%{$sql['specialite']}%'");
+       SELECT * FROM theme where specialite LIKE '%{$sql['specialite']}%' and statut=1");
                                     $stmt->execute();
                                     $st=$stmt->fetchAll();
 
@@ -268,7 +268,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
 
                                     $stmt = $db->prepare("
-       SELECT * FROM theme where specialite LIKE '%{$sql['specialite']}%' ");
+       SELECT * FROM theme where specialite LIKE '%{$sql['specialite']}%' and statut=1");
                                     $stmt->execute();
                                     $st=$stmt->fetchAll();
 
@@ -296,7 +296,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
 
                                     $stmt = $db->prepare("
-       SELECT * FROM theme where specialite LIKE '%{$sql['specialite']}%'
+       SELECT * FROM theme where specialite LIKE '%{$sql['specialite']}%'and statut=1
 	   
 ");
                                     $stmt->execute();
@@ -324,7 +324,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
 
                                     $stmt = $db->prepare("
-       SELECT * FROM theme where specialite LIKE '%{$sql['specialite']}%'
+       SELECT * FROM theme where specialite LIKE '%{$sql['specialite']}%' and statut=1
 	   
 ");
                                     $stmt->execute();
@@ -352,7 +352,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
 
                                     $stmt = $db->prepare("
-       SELECT * FROM theme where specialite LIKE '%{$sql['specialite']}%'
+       SELECT * FROM theme where specialite LIKE '%{$sql['specialite']}%' and statut=1
 	   
 ");
                                     $stmt->execute();

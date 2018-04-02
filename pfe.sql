@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Client :  127.0.0.1
--- Généré le :  Sam 31 Mars 2018 à 15:10
+-- Généré le :  Lun 02 Avril 2018 à 13:56
 -- Version du serveur :  5.6.17
 -- Version de PHP :  5.5.12
 
@@ -67,7 +67,7 @@ CREATE TABLE IF NOT EXISTS `enseignant` (
 --
 
 INSERT INTO `enseignant` (`id_ens`, `Nom`, `Prenom`, `Grade`, `login`, `password`) VALUES
-(1, 'messabibhi', 'mouhamed', '', '', ''),
+(0, 'messabibhi', 'mouhamed', '', '', ''),
 (2, 'benziane', 'mouhamed', '', '', ''),
 (3, 'khitri ', 'souad', '', '', ''),
 (4, 'tedlaoui', 'mouhamed', '', '', ''),
@@ -98,7 +98,7 @@ CREATE TABLE IF NOT EXISTS `etudiant` (
 --
 
 INSERT INTO `etudiant` (`NumeroEtudiant`, `Nom`, `Prenom`, `DateNaissance`, `specialite`, `Moyenne`, `login`, `password`) VALUES
-(1, 'larbi', 'fatima zohra', '1994-04-01', 'GL', 12, 'larbifatima94@gmail.com', '123'),
+(1, 'larbi', 'fatima zohra', '1994-04-01', 'GL', 15, 'larbifatima94@gmail.com', '123'),
 (7, 'taleb', 'chahrazed', '1995-06-26', 'RSD', 15, 'rim.malak@gmail.com', '456');
 
 -- --------------------------------------------------------
@@ -117,16 +117,17 @@ CREATE TABLE IF NOT EXISTS `fichevoeux` (
   `choix2` varchar(50) NOT NULL,
   `choix3` varchar(50) NOT NULL,
   `choix4` varchar(50) NOT NULL,
+  `voeux` varchar(50) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=5 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=6 ;
 
 --
 -- Contenu de la table `fichevoeux`
 --
 
-INSERT INTO `fichevoeux` (`id`, `moyenne`, `etudiant`, `specialite`, `choix5`, `choix1`, `choix2`, `choix3`, `choix4`) VALUES
-(3, 12, 'larbi fatima zohra', 'GL', 'routage avec QoS dans les rÃ©seaux ad hoc ', 'routage avec QoS dans les rÃ©seaux ad hoc ', 'Gestion de lâ€™Ã©volution des ontologies dans les ', 'MAINTENANCE d un logiciel generateur de site Web', 'Gestion de lâ€™Ã©volution des ontologies dans les '),
-(4, 13.5, 'larbi fatima zohra,taleb chahrazed', 'GL', 'routage avec QoS dans les rÃ©seaux ad hoc ', 'routage avec QoS dans les rÃ©seaux ad hoc ', 'routage avec QoS dans les rÃ©seaux ad hoc ', 'routage avec QoS dans les rÃ©seaux ad hoc ', 'routage avec QoS dans les rÃ©seaux ad hoc ');
+INSERT INTO `fichevoeux` (`id`, `moyenne`, `etudiant`, `specialite`, `choix5`, `choix1`, `choix2`, `choix3`, `choix4`, `voeux`) VALUES
+(4, 13.5, 'larbi fatima zohra,taleb chahrazed', 'GL', 'routage avec QoS dans les rÃ©seaux ad hoc ', 'routage avec QoS dans les rÃ©seaux ad hoc ', 'routage avec QoS dans les rÃ©seaux ad hoc ', 'routage avec QoS dans les rÃ©seaux ad hoc ', 'routage avec QoS dans les rÃ©seaux ad hoc ', 'routage avec QoS dans les rÃ©seaux ad hoc '),
+(5, 12, 'larbi fatima zohra', 'GL', 'routage avec QoS dans les rÃ©seaux ad hoc ', 'routage avec QoS dans les rÃ©seaux ad hoc ', 'routage avec QoS dans les rÃ©seaux ad hoc ', 'routage avec QoS dans les rÃ©seaux ad hoc ', 'routage avec QoS dans les rÃ©seaux ad hoc ', '');
 
 -- --------------------------------------------------------
 
@@ -188,10 +189,36 @@ CREATE TABLE IF NOT EXISTS `theme` (
 --
 
 INSERT INTO `theme` (`id_theme`, `intitule`, `id_ens`, `specialite`, `statut`) VALUES
-(8, 'routage avec QoS dans les rÃ©seaux ad hoc ', 0, 'GL, RSD, MID', 0),
+(8, 'routage avec QoS dans les rÃ©seaux ad hoc ', 0, 'GL, RSD, MID', 1),
 (9, 'Cryptanalyse par usage des algorithmes genetique', 0, 'MID', 0),
 (10, 'Gestion de lâ€™Ã©volution des ontologies dans les ', 0, 'GL, SIC', 0),
 (11, 'MAINTENANCE d un logiciel generateur de site Web', 7, 'GL, MID', 0);
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `voeux`
+--
+
+CREATE TABLE IF NOT EXISTS `voeux` (
+  `id_voeux` int(11) NOT NULL AUTO_INCREMENT,
+  `etudiant` varchar(35) NOT NULL,
+  `encadreur` varchar(30) NOT NULL,
+  `theme` varchar(50) NOT NULL,
+  `specialite` varchar(4) NOT NULL,
+  `avancement` int(11) NOT NULL,
+  PRIMARY KEY (`id_voeux`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
+
+--
+-- Contenu de la table `voeux`
+--
+
+INSERT INTO `voeux` (`id_voeux`, `etudiant`, `encadreur`, `theme`, `specialite`, `avancement`) VALUES
+(1, 'larbi fatima zohra,taleb chahrazed', 'messabibhi mouhamed', 'routage avec QoS dans les rÃ©seaux ad hoc ', 'GL', 0),
+(2, 'larbi fatima zohra', 'messabibhi mouhamed', 'routage avec QoS dans les rÃ©seaux ad hoc ', 'GL', 0),
+(3, 'larbi fatima zohra,taleb chahrazed', 'messabibhi mouhamed', 'routage avec QoS dans les rÃ©seaux ad hoc ', 'GL', 0),
+(4, 'larbi fatima zohra,taleb chahrazed', 'messabibhi mouhamed', 'routage avec QoS dans les rÃ©seaux ad hoc ', 'GL', 0);
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

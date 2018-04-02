@@ -34,9 +34,9 @@ input[type="submit"],input[type="reset"],.w3layouts_mail_grid_left2 a,.w3agile_s
 }
 /*-- banner --*/
 .banner{
-    background:url(../images/tt.jpg) no-repeat 0px 0px;
+    background:url(../images/sou1.jpg) no-repeat 0px 0px;
     background-size:cover;
-    -webkit-background-size:cover;
+    -webkit-background-size:'1730px 500px';
     -moz-background-size:cover;
     -o-background-size:cover;
     -ms-background-size:cover;
@@ -458,11 +458,11 @@ ul.top-links li a i.fa:hover {
     font-size: 6em;
     line-height: 1.5em;
     text-transform: uppercase;
-    color: #fff;
+    color: white;
     font-weight: bold;
     letter-spacing: 4px;
-    border-top: 6px solid #fff;
-    border-left: 6px solid #fff;
+    border-top: 6px solid black;
+    border-left: 6px solid black;
     width: 60%;
     margin: 0 auto;
     padding-top: 25px;

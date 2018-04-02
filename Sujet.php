@@ -44,6 +44,13 @@ if(isset($_POST['submit'])) {
 <body lang="en">
 <head>
     <title>PFE MANAGER</title>
+
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.7.5/css/bootstrap-select.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.7.5/js/bootstrap-select.min.js"></script>
+
     <!-- for-mobile-apps -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -151,7 +158,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
                         <li class="active" ><a href="#">Proposer Sujet</a></li>
                         <li><a href="contact.html">Contact</a></li>
-                        <li><a href="portfolio.html">Deconnexion</a></li>
+                        <li><a href="logout.php">Deconnexion</a></li>
 
                     </ul>
                 </div>
@@ -203,11 +210,12 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                 for ($i = 1; $i <=$result['nbr']; $i++) {
                                     echo "
                            
-                            <div class='col-sm-6'>
+                            <div class='col-sm-12'>
 
                             <div class='row'>
-                                <label class='col-sm-2 col-sm-offset-2' >Theme1</label><br>
-                                <select multiple name=\"specialite'$i'[]\">
+                                <label class='col-sm-2 col-sm-offset-4' >Theme $i</label><br>
+                                <select class=\"selectpicker\" data-style=\"btn-default
+\" multiple name=\"specialite'$i'[]\">
 <option value='GL'> GL </option>
 <option value='RSD'> RSD </option>
 <option value='SIC'> SIC </option>
@@ -215,7 +223,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
 
 </select>
-                                <label class='col-sm-2'>Titre</label><input class='col-sm-7 ' type='text' name=\"titre'$i'\"/>
+                                <label class='col-sm-2'>Intitule</label><input class='col-sm-6 ' type='text' name=\"titre'$i'\"/>
                                 
                             </div></div> ";}
 
@@ -230,3 +238,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 </body>
 </html>
 
+<script src="jquery-1.12-0.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="bootbox.min.js"></script>

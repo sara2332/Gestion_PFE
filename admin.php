@@ -1,9 +1,9 @@
 <?php
 session_start();
-if(!(isset($_SESSION['enseignant']))){
+if(!(isset($_SESSION['administrateur']))){
     header("location:acceuil.php");
 }
-$ens=$_GET['ens'];
+$admin=$_GET['admin'];
 
 ?>
 
@@ -29,9 +29,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 </script>
 <style>
     body{
-        background-image:url(images/serve.jpg);
+        background-image:url(images/hy.jpg);
 
-        background-size:1530px 800px;
+        background-size:cover;
         background-repeat:no-repeat
 
     }
@@ -54,23 +54,27 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
 </div>
 
-</body><br><br><br><br><br><br>
+</body><br><br><br><br>
 <div class="container">
     <div class="col-sm-8">
         <div class='row'>
-            <div class='col-sm-8 col-sm-offset-1'>
-                <?php echo " <a href='Sujet.php?ens=$ens'>";?> <img src='images/tr.jpg' class='img-circle' height='100px' width='100px' ></img><b><font size=5 color='#7fffd4'> Gestion des sujets</font></b></a></div></div><br>
+            <div class='col-sm-6  col-sm-offset-1'>
+
+                <?php echo " <a href='gl.php?admin=$admin'>";?> <img src='images/affecter.jpg' class='img-circle' height='100px' width='100px'/><b><font size=5 color='red'> Gerer Etudiants</font></b></a></br></div></div><br>
+
         <div class='row'>
             <div class='col-sm-6'>
+                <?php echo " <a href='AffecterGL.php?admin=$admin'>";?> <img src='images/tr.jpg' class='img-circle' height='100px' width='100px' ></img><b><font size=5 color='red'> Affectation Sujet </font></b></a></div></div><br>
+       <div class='row'>
+            <div class='col-sm-6 '>
 
-                <?php echo " <a href='validationSujet.php?ens=$ens'>";?> <img src='images/affecter.jpg' class='img-circle' height='100px' width='100px'/><b><font size=5 color='#7fffd4'> Validation Sujet</font></b></a></br></div></div><br>
+                <a href='#'><img src='images/ab.jpg' class='img-circle' height='100px' width='100px'></img><b><font size=5 color='red'> Avancement travails</b></div></div><br>
         <div class='row'>
-            <div class='col-sm-6 col-sm-offset-1 '>
+            <div class='col-sm-8 col-sm-offset-1 '>
 
-                <a href='rendez_vous.php'><img src='images/ab.jpg' class='img-circle' height='100px' width='100px'></img><b><font size=5 color='#7fffd4'> Avancement travails</b></div></div><br>
-        <div class='row'>
-
+                <a href='#'><img src='images/ab.jpg' class='img-circle' height='100px' width='100px'></img><b><font size=5 color='red'>Authorisation Soutenance</b></div></div><br>
 
 
 
-    </html>
+
+</html>

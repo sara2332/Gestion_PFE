@@ -109,7 +109,15 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
 
 
-                        <li ><a href="#" >Liste des Etudiants</a></li>
+                        <li  class="dropdown active" >
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Gérer Etudiants<b class="caret"></b></a>
+                            <ul class="dropdown-menu">
+                                <li  ><?php echo "<a href='gl.php?admin=$admin'>";?>GL</a></li>
+                                <li  ><?php echo "<a href='rsd.php?admin=$admin'>";?>RSD</a></li>
+                                <li class="active" ><?php echo "<a href='sic.php?admin=$admin'>";?>SIC</a></li>
+                                <li  ><?php echo "<a href='mid.php?admin=$admin'>";?>MID</a></li>
+                            </ul>
+                        </li>
                         <li><a href="affecterSujet.php">Affectation des Sujets</a></li>
                         <li><a href="deconnexion.php">Deconnexion</a></li>
 

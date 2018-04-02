@@ -170,9 +170,9 @@ span.psw {
 									<li><a href="#"><i class="fa fa-google-plus"></i></a></li>
 								</ul>
 				<div class="collapse navbar-collapse navbar-right" id="bs-example-navbar-collapse-1">
-					    <ul class="nav navbar-nav">
+					    <ul class="nav navbar-nav" >
           							 
-								<li  class="active"><a href="#"><b>Acceuil</b></a></li> 
+								<li  class="active" ><a href="#"><b>Acceuil</b></a></li>
          						 </ul>
        						 </div>
         				<!-- /.navbar-collapse -->
@@ -187,7 +187,7 @@ span.psw {
 						<ul class="rslides" id="slider3">
 							<li>
 								<div class="w3l_banner_info">
-									 <h4>Initiate</h4>
+									 <h4>BIENVENUE</h4>
 <button onclick="document.getElementById('id01').style.display='block'" class="hvr-underline-from-center read" style="width:auto;">Connexion</button>
 
 <div id="id01" class="modal">
@@ -228,9 +228,9 @@ span.psw {
 		<input type="text" placeholder="Entrer nom" name="nom" required>
 		<label for="prenom"><b>Prénom</b></label>
 		<input type="text" placeholder="Entrer prenom" name="prenom" required>
-		<label for="date_n"><b>Date Naissance</b></label>
+		<label for="date_n"><b>Date Naissance(*Etudiant)</b></label>
 		<input type="date" placeholder="Entrer la date de naissance" name="date_n">&nbsp;&nbsp;&nbsp;
-		<label for="specialite"><b>Spécialité</b></label>
+		<label for="specialite"><b>Spécialité(*Etudiant)</b></label>
 		<select  name="specialite">
             <option ></option>
 
@@ -240,7 +240,7 @@ span.psw {
 			<option value='MID'> MID </option>
 
 		</select>&nbsp;&nbsp;&nbsp;
-		<label for="grade"><b>Grade</b></label>
+		<label for="grade"><b>Grade (*Enseignant)</b></label>
 		<select  name="grade">
             <option  ></option>
 
@@ -250,7 +250,7 @@ span.psw {
 			<option value='MAB'> MAB </option>
 			<option value='Professeur'> Professeur </option>
 
-		</select>
+		</select><br><br>
 
 		<label for="email"><b>Email</b></label>
       <input type="text" placeholder="Entrer Email" name="email" required>
@@ -357,58 +357,12 @@ span.psw {
 <!-- //client -->
 <!-- /contact -->
    <div class="contact-main-agile-info" id="contact">
-        <div class="container">
-		   <h3 class="tittle">Contact Us</h3>
-		   <p class="sub">We are waiting your next move </p>
-		  <div class="contact-top-agileits">
-               <div class="col-md-4 contact-grid ">
-					<div class="contact-grid1 agileits-w3layouts">
-						<i class="fa fa-location-arrow"></i>
-						<div class="con-w3l-info">
-						   <h4>Address </h4>
-						  <p>12K Street<span>New York City.</span></p>
-						</div>
-						<div class="clearfix"></div>
-					</div>
-				</div>
-				<div class="col-md-4 contact-grid">
-					<div class="contact-grid2 w3">
-						<i class="fa fa-volume-control-phone"></i>
-						<div class="con-w3l-info">
-						  <h4>Call Us</h4>
-						   <p>+1234 567 890<span>+1234 567 890</span></p>
-						</div>
-						<div class="clearfix"></div>
-					</div>
-				</div>
-				<div class="col-md-4 contact-grid">
-					<div class="contact-grid3 w3l">
-						<i class="fa fa-envelope"></i>
-						<div class="con-w3l-info">
-						  <h4>Email</h4>
-						  <p><a href="mailto:info@example.com">info@example1.com</a>
-						  <span><a href="mailto:info@example.com">info@example2.com</a></span></p>
-						  </div>
-						  <div class="clearfix"></div>
-					</div>
-				</div>
-				<div class="clearfix"></div>
-			</div>
-		  </div>
+
    <!-- map -->
 		<div class="map agileits">
 		   <div class="location-mark"><i class="fa fa-map-marker"></i></div>
 			   <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d26359195.17562375!2d-113.7156245614499!3d36.2473834534249!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x54eab584e432360b%3A0x1c3bb99243deb742!2sUnited+States!5e0!3m2!1sen!2sin!4v1471497559566"  frameborder="0" style="border:0" allowfullscreen></iframe>
-					<div class="map-grids">
-					    <h4>Send Us a Message Now</h4>
-						<form action="#" method="post">
-						<input type="text" name="Your Name" placeholder="Your Name" required=" ">
-						<input type="text" name="Your Email" placeholder="Your Email" required=" ">
-						<textarea name="Your Message" placeholder="Your Message" required=""></textarea>
-						<input type="submit" value="SUBMIT">
-					</form>
-					
-				</div>
+
 			
 		</div>
 		<!-- //map -->
@@ -417,56 +371,18 @@ span.psw {
 	<div class="w3l-footer">
 		<div class="container">
          <div class="footer-info-agile">
-				<div class="col-md-2 footer-info-grid links">
-					<h4>QUICK LINKS</h4>
-					<ul>
-						       <li><a href="index.html">Home</a></li> 
-								<li><a href="about.html">About</a></li> 
-								<li><a href="codes.html">Services</a></li> 
-								<li><a href="portfolio.html">Portfolio</a></li> 
-								<li><a href="contact.html">Contact</a></li> 
-					</ul>
-				</div>
+
 				<div class="col-md-3 footer-info-grid address">
 					<h4>ADDRESS</h4>
 					<address>
 						<ul>
-							<li>London Victoria 3000</li>
-							<li>40019 King Street Melbourne</li>
-							<li>BO,London</li>
+							<li>Tlemcen  Mansorah</li>
+
 							<li>Telephone : +1 (734) 123-4567</li>
 							<li>Email : <a class="mail" href="mailto:mail@example.com">info(at)example.com</a></li>
 						</ul>
 					</address>
 				</div>
-				<div class="col-md-3 footer-grid">
-				   <h4>INSTAGRAM</h4>
-					<div class="footer-grid-instagram">
-					<a href="#"><img src="images/f1.jpg" alt=" " class="img-responsive"></a>
-					</div>
-					<div class="footer-grid-instagram">
-					<a href="#"><img src="images/f2.jpg" alt=" " class="img-responsive"></a>
-					</div>
-					<div class="footer-grid-instagram">
-						<a href="#"><img src="images/f3.jpg" alt=" " class="img-responsive"></a>
-					</div>
-					<div class="footer-grid-instagram">
-					<a href="#"><img src="images/f4.jpg" alt=" " class="img-responsive"></a>
-					</div>
-					<div class="clearfix"> </div>
-				</div>
-				<div class="col-md-4 footer-info-grid newsletter">
-					<h4>NEWSLETTER</h4>
-					<p>Subscribe to our newsletter and we will inform you about newest projects and promotions.
-					</p>
-
-					<form action="#" method="post" class="newsletter">
-						<input class="email" type="email" placeholder="Your email...">
-						<input type="submit" class="submit" value="">
-					</form>
-				</div>
-				<div class="clearfix"></div>
-			</div>
 
 			<div class="connect-agileits">
 				<div class="connect-social">
@@ -487,7 +403,6 @@ span.psw {
 			</div>
 
 			<div class="copyright-wthree">
-				<p>&copy; 2017 Controller. All Rights Reserved | Design by <a href="http://w3layouts.com/"> W3layouts </a></p>
 			</div>
 
 		</div>
