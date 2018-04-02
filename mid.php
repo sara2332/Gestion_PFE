@@ -85,6 +85,10 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
 
     }
+    .champ {
+        height:20px;
+        width:45px;
+    }
 </style>
 <!-- start-smoth-scrolling -->
 
@@ -117,8 +121,18 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                 <li  ><?php echo "<a href='sic.php?admin=$admin'>";?>SIC</a></li>
                                 <li class="active" ><?php echo "<a href='mid.php?admin=$admin'>";?>MID</a></li>
                             </ul>
-                        </li>                          <li><a href="affecterSujet.php">Affectation des Sujets</a></li>
-                        <li><a href="deconnexion.php">Deconnexion</a></li>
+                        </li>
+                        <li >
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Affectation Sujet <b class="caret"></b></a>
+                            <ul class="dropdown-menu">
+                                <li  ><?php echo "<a href='affecterGL.php?admin=$admin'>";?>GL</a></li>
+                                <li >  <?php echo " <a href='affecterRSD.php?admin=$admin'>";?>RSD</a></li>
+                                <li ><?php echo "<a href='affecterSIC.php?admin=$admin'>";?>SIC</a></li>
+                                <li ><?php echo "<a href='affecterMID.php?admin=$admin'>";?>MID</a></li>
+
+
+                            </ul>
+                        </li>                           <li><a href="logout.php">Deconnexion</a></li>
 
                     </ul>
                 </div>
@@ -144,7 +158,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     <div class="col-sm-8">
         <fieldset  class="border" style="width:1150px;">
             <legend>Liste des Etudiants:</legend>
-            <form method="post" action="ModifierMoy.php" enctype="multipart/form-data">
 
                 <table border="1" style="width:1000px "  class="table table-striped table-hover table-bordered "><thead>
 
@@ -160,7 +173,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
 
 
-                    </tr></thead></form></fieldset>
+                    </tr></thead></fieldset>
         <?php
         $dsn = "localhost";
         $user = "root";
@@ -255,7 +268,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
                         echo "<tr><td>".$id."</td><td>".$ligne["Nom"]."</td><td>".$ligne["Prenom"]."</td><td>".$ligne["DateNaissance"]."</td><td>".$ligne["specialite"]."</td>
 <form action='' method='post'>
-<td><input type='text' name='moy' value=".$ligne["Moyenne"]."></td>
+<td><input type='text' class='champ' name='moy' value=".$ligne["Moyenne"]."></td>
 <td>
 <input type='hidden' name='id' value='$id'>
 <input type='submit' class=\"btn btn-outline-danger\"  name= 'submit' value='save' style='color:orangered' ></td>

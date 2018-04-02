@@ -17,7 +17,7 @@ if(isset($_POST['submit']))
 
     $total = $db->prepare('
         SELECT
-          Nom,Prenom
+          Nom,Prenom,id_ens
         FROM
             enseignant where id_ens in (select id_ens from theme where intitule=?)');
     $params=array($choix);
@@ -25,12 +25,13 @@ if(isset($_POST['submit']))
     $total->execute($params);
     $sql=$total->fetch();
     $nom=$sql['Nom'] . " " . $sql['Prenom'];
-
+    $id_ens=$sql['id_ens'];
 
     $sql1 = $db->prepare('
-        insert into voeux(etudiant,encadreur,specialite,theme)
-            values (?,?,"MID",?)');
-    $params = array($etudiant,$nom,$choix);
+        insert into voeux(etudiant,encadreur,specialite,theme,avancement,id_ens)
+            values (?,?,"MID",?,0,?)');
+    $params = array($etudiant,$nom,$choix,$id_ens);
+
 
     $sql1->execute($params);
 }
@@ -133,8 +134,17 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             </ul>
             <div class="collapse navbar-collapse navbar-right" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
-                    <li ><a href="index.html">Home</a></li>
+                    <li   >
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Gérer Etudiants <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            <li  ><?php echo "<a href='gl.php?admin=$admin'>";?>GL</a></li>
+                            <li >  <?php echo " <a href='rsd.php?admin=$admin'>";?>RSD</a></li>
+                            <li ><?php echo "<a href='sic.php?admin=$admin'>";?>SIC</a></li>
+                            <li><?php echo "<a href='sic.php?admin=$admin'>";?>MID</a></li>
 
+
+                        </ul>
+                    </li>
 
                     <li  class="dropdown active" >
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">Affectation Sujet <b class="caret"></b></a>

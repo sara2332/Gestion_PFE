@@ -58,6 +58,10 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     });
 </script>
 <style>
+    .champ {
+        height:20px;
+        width:45px;
+    }
     legend {
         color:red;
         text-shadow: 2px 2px 3px rgba(150, 150, 150, 0.75);
@@ -118,8 +122,17 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                 <li  ><?php echo "<a href='mid.php?admin=$admin'>";?>MID</a></li>
                             </ul>
                         </li>
-                        <li><a href="affecterSujet.php">Affectation des Sujets</a></li>
-                        <li><a href="deconnexion.php">Deconnexion</a></li>
+                        <li >
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Affectation Sujet <b class="caret"></b></a>
+                            <ul class="dropdown-menu">
+                                <li  ><?php echo "<a href='affecterGL.php?admin=$admin'>";?>GL</a></li>
+                                <li >  <?php echo " <a href='affecterRSD.php?admin=$admin'>";?>RSD</a></li>
+                                <li ><?php echo "<a href='affecterSIC.php?admin=$admin'>";?>SIC</a></li>
+                                <li ><?php echo "<a href='affecterMID.php?admin=$admin'>";?>MID</a></li>
+
+
+                            </ul>
+                        </li>                        <li><a href="logout.php">Deconnexion</a></li>
 
                     </ul>
                 </div>
@@ -145,7 +158,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     <div class="col-sm-8">
         <fieldset  class="border" style="width:1150px;">
             <legend>Liste des Etudiants:</legend>
-            <form method="post" action="ModifierMoy.php" enctype="multipart/form-data">
 
                 <table border="1" style="width:1000px "  class="table table-striped table-hover table-bordered "><thead>
 
@@ -161,7 +173,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
 
 
-                    </tr></thead></form></fieldset>
+                    </tr></thead></fieldset>
         <?php
         $dsn = "localhost";
         $user = "root";

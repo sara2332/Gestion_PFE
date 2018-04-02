@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Client :  127.0.0.1
--- Généré le :  Lun 02 Avril 2018 à 13:56
+-- Généré le :  Lun 02 Avril 2018 à 19:01
 -- Version du serveur :  5.6.17
 -- Version de PHP :  5.5.12
 
@@ -67,13 +67,12 @@ CREATE TABLE IF NOT EXISTS `enseignant` (
 --
 
 INSERT INTO `enseignant` (`id_ens`, `Nom`, `Prenom`, `Grade`, `login`, `password`) VALUES
-(0, 'messabibhi', 'mouhamed', '', '', ''),
+(0, 'messabihi', 'mohamed', 'MAA', 'larbifatima94@gmail.com', '125'),
 (2, 'benziane', 'mouhamed', '', '', ''),
 (3, 'khitri ', 'souad', '', '', ''),
 (4, 'tedlaoui', 'mouhamed', '', '', ''),
 (5, 'benamar', 'abdelkrim', 'chef departement', '', ''),
-(6, 'benmammar', 'badr', '', '', ''),
-(7, 'messabihi', 'mohamed', 'MAA', 'larbifatima94@gmail.com', '125');
+(6, 'benmammar', 'badr', '', '', '');
 
 -- --------------------------------------------------------
 
@@ -127,7 +126,7 @@ CREATE TABLE IF NOT EXISTS `fichevoeux` (
 
 INSERT INTO `fichevoeux` (`id`, `moyenne`, `etudiant`, `specialite`, `choix5`, `choix1`, `choix2`, `choix3`, `choix4`, `voeux`) VALUES
 (4, 13.5, 'larbi fatima zohra,taleb chahrazed', 'GL', 'routage avec QoS dans les rÃ©seaux ad hoc ', 'routage avec QoS dans les rÃ©seaux ad hoc ', 'routage avec QoS dans les rÃ©seaux ad hoc ', 'routage avec QoS dans les rÃ©seaux ad hoc ', 'routage avec QoS dans les rÃ©seaux ad hoc ', 'routage avec QoS dans les rÃ©seaux ad hoc '),
-(5, 12, 'larbi fatima zohra', 'GL', 'routage avec QoS dans les rÃ©seaux ad hoc ', 'routage avec QoS dans les rÃ©seaux ad hoc ', 'routage avec QoS dans les rÃ©seaux ad hoc ', 'routage avec QoS dans les rÃ©seaux ad hoc ', 'routage avec QoS dans les rÃ©seaux ad hoc ', '');
+(5, 12, 'larbi fatima zohra', 'GL', 'routage avec QoS dans les rÃ©seaux ad hoc ', 'routage avec QoS dans les rÃ©seaux ad hoc ', 'routage avec QoS dans les rÃ©seaux ad hoc ', 'routage avec QoS dans les rÃ©seaux ad hoc ', 'routage avec QoS dans les rÃ©seaux ad hoc ', 'routage avec QoS dans les rÃ©seaux ad hoc ');
 
 -- --------------------------------------------------------
 
@@ -207,18 +206,16 @@ CREATE TABLE IF NOT EXISTS `voeux` (
   `theme` varchar(50) NOT NULL,
   `specialite` varchar(4) NOT NULL,
   `avancement` int(11) NOT NULL,
+  `id_ens` int(11) NOT NULL,
   PRIMARY KEY (`id_voeux`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=7 ;
 
 --
 -- Contenu de la table `voeux`
 --
 
-INSERT INTO `voeux` (`id_voeux`, `etudiant`, `encadreur`, `theme`, `specialite`, `avancement`) VALUES
-(1, 'larbi fatima zohra,taleb chahrazed', 'messabibhi mouhamed', 'routage avec QoS dans les rÃ©seaux ad hoc ', 'GL', 0),
-(2, 'larbi fatima zohra', 'messabibhi mouhamed', 'routage avec QoS dans les rÃ©seaux ad hoc ', 'GL', 0),
-(3, 'larbi fatima zohra,taleb chahrazed', 'messabibhi mouhamed', 'routage avec QoS dans les rÃ©seaux ad hoc ', 'GL', 0),
-(4, 'larbi fatima zohra,taleb chahrazed', 'messabibhi mouhamed', 'routage avec QoS dans les rÃ©seaux ad hoc ', 'GL', 0);
+INSERT INTO `voeux` (`id_voeux`, `etudiant`, `encadreur`, `theme`, `specialite`, `avancement`, `id_ens`) VALUES
+(6, 'larbi fatima zohra,taleb chahrazed', 'messabibhi mouhamed', 'routage avec QoS dans les rÃ©seaux ad hoc ', 'GL', 48, 0);
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

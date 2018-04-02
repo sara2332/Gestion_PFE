@@ -157,7 +157,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                     <ul class="nav navbar-nav">
 
                         <li class="active" ><a href="#">Proposer Sujet</a></li>
-                        <li><a href="contact.html">Contact</a></li>
+                        <li><?php echo "<a href='avancement.php?ens=$ens'>"?> Avancement travail</a></li>
                         <li><a href="logout.php">Deconnexion</a></li>
 
                     </ul>

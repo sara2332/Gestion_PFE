@@ -1,25 +1,39 @@
-<!--
-author: W3layouts
-author URL: http://w3layouts.com
-License: Creative Commons Attribution 3.0 Unported
-License URL: http://creativecommons.org/licenses/by/3.0/
--->
 <?php
 session_start();
-if(!(isset($_SESSION['administrateur']))){
+if(!(isset($_SESSION['enseignant']))){
     header("location:acceuil.php");
 }
-$admin=$_GET['admin'];
+$ens=$_GET['ens'];
 
 ?>
 <?php
-require("cnxbdd.php");
-if(isset($_POST['submit'])) {
-    $moy = $_POST['moy'];
-    $id = $_POST['id'];
+include("cnxbdd.php");
 
-    $req = $db->prepare('UPDATE etudiant SET Moyenne =? WHERE NumeroEtudiant =?');
-    $req->execute(array($moy, $id));
+$stmt = $db->prepare('
+       SELECT Nom,Prenom FROM enseignant
+            where id_ens="'.$ens.'" 
+    
+    ');
+$stmt->execute();
+
+$ft=$stmt->fetch();
+
+?>
+<?php
+include("cnxbdd.php");
+
+if (isset($_POST['submit']))
+
+
+{
+    $id=$_POST['id'];
+    $pourcentage=$_POST['pour'];
+
+    $sql2 = $db->prepare('
+update voeux set avancement=? where id_voeux=?');
+    $params = array($pourcentage,$id);
+
+    $sql2->execute($params);
 }
 ?>
 
@@ -58,6 +72,12 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     });
 </script>
 <style>
+    .champ {
+        height:20px;
+        width:40px;
+    }
+
+
     legend {
         color:red;
         text-shadow: 2px 2px 3px rgba(150, 150, 150, 0.75);
@@ -85,10 +105,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
 
     }
-    .champ {
-        height:20px;
-        width:45px;
-    }
 </style>
 <!-- start-smoth-scrolling -->
 
@@ -111,28 +127,11 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                 <div class="collapse navbar-collapse navbar-right" id="bs-example-navbar-collapse-1">
                     <ul class="nav navbar-nav">
 
+                        <li  ><?php echo "<a href='Sujet.php?ens=$ens'>"?>Proposer Sujet</a></li>
+                        <li class="active"><a href="avancement.php">Avancement travail</a></li>
 
 
-                        <li  class="dropdown active" >
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Gérer Etudiants<b class="caret"></b></a>
-                            <ul class="dropdown-menu">
-                                <li  ><?php echo "<a href='gl.php?admin=$admin'>";?>GL</a></li>
-                                <li class="active" ><?php echo "<a href='rsd.php?admin=$admin'>";?>RSD</a></li>
-                                <li  ><?php echo "<a href='sic.php?admin=$admin'>";?>SIC</a></li>
-                                <li  ><?php echo "<a href='mid.php?admin=$admin'>";?>MID</a></li>
-                            </ul>
-                        </li>
-                        <li >
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Affectation Sujet <b class="caret"></b></a>
-                            <ul class="dropdown-menu">
-                                <li  ><?php echo "<a href='affecterGL.php?admin=$admin'>";?>GL</a></li>
-                                <li >  <?php echo " <a href='affecterRSD.php?admin=$admin'>";?>RSD</a></li>
-                                <li ><?php echo "<a href='affecterSIC.php?admin=$admin'>";?>SIC</a></li>
-                                <li ><?php echo "<a href='affecterMID.php?admin=$admin'>";?>MID</a></li>
-
-
-                            </ul>
-                        </li>                           <li><a href="logout.php">Deconnexion</a></li>
+                        <li><a href="logout.php">Deconnexion</a></li>
 
                     </ul>
                 </div>
@@ -153,27 +152,26 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     </div></nav>
 
 <body>
+
+<body>
 </br>
+<h3 align="center" style="color: black;font-family:Times New Roman, Times,serif"><mark >Enseignant: </mark> <?php echo ($ft['Nom']." ".$ft['Prenom']); ?></h3><br>
 <div class="container">
     <div class="col-sm-8">
         <fieldset  class="border" style="width:1150px;">
             <legend>Liste des Etudiants:</legend>
 
-                <table border="1" style="width:1000px "  class="table table-striped table-hover table-bordered "><thead>
+            <table border="1" style="width:1000px "  class="table table-striped table-hover table-bordered "><thead>
 
 
-                    <tr><th align="center"> Id </th>
-                        <th align="center"> Nom </th>
-                        <th align="center">Prenom</th>
-                        <th align="center">Date de Naissance</th>
-                        <th align="center">Spetialite</th>
+                    <th align="center"> Etudiant </th>
+                    <th align="center">Specialité</th>
+                    <th align="center">Pourcentage</th>
 
-                        <th align="center">Moyenne</th>
-                        <th align="center">Enregistrer</th>
+                    <th align="center">Valider</th>
 
 
-
-                    </tr></thead></fieldset>
+                </tr></thead></fieldset>
         <?php
         $dsn = "localhost";
         $user = "root";
@@ -189,8 +187,10 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         SELECT
             COUNT(*)
         FROM
-            etudiant
+            voeux
+            where id_ens="'.$ens.'"
     ')->fetchColumn();
+
 
             // How many items to list per page
             $limit = 10;
@@ -213,8 +213,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             $start = $offset + 1;
             $end = min(($offset + $limit), $total);
 // The "back" link
-            $prevlink = ($page > 1) ? '<a href="?admin='.$id1.'&amp;page=1" title="premier page"> <i style="color:green" class="fa fa- fa-caret-left fa-lg"  ></i></a>
-	<a href="?admin='.$id1.'&amp;page=' . ($page - 1) . '" title="page précédent"> &nbsp;&nbsp;<i style="color:red" class="fa fa- fa-hand-o-left fa-lg"  ></i> &nbsp;&nbsp  </a>':
+            $prevlink = ($page > 1) ? '<a href="?ens='.$ens.'&amp;page=1" title="premier page"> <i style="color:green" class="fa fa- fa-caret-left fa-lg"  ></i></a>
+	<a href="?ens='.$ens.'&amp;page=' . ($page - 1) . '" title="page précédent"> &nbsp;&nbsp;<i style="color:red" class="fa fa- fa-hand-o-left fa-lg"  ></i> &nbsp;&nbsp  </a>':
                 ' <span class="disabled"> &nbsp; <i style="color:green" class="fa fa- fa-caret-left fa-lg"  ></i></span>
 	<span class="disabled"> &nbsp;&nbsp;<i style="color:red" class="fa fa- fa-hand-o-left fa-lg"  ></i></span>';
 
@@ -222,10 +222,10 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
 
             // The "forward" link
-            $nextlink = ($page < $pages) ? '<a href="?admin='.$id1.'&amp;page=' . ($page + 1) . '"&amp;ens=$id1 title="page suivant"> &nbsp;&nbsp;
+            $nextlink = ($page < $pages) ? '<a href="?ens='.$ens.'&amp;page=' . ($page + 1) . '"&amp;ens=$id1 title="page suivant"> &nbsp;&nbsp;
 	<i style="color:red" class="fa  fa-hand-o-right fa-lg"  ></i> &nbsp; 
 
-</a> <a href="?admin='.$id1.'&amp;page=' . $pages . ' " title="dernière page">  &nbsp; 
+</a> <a href="?ens='.$ens.'&amp;page=' . $pages . ' " title="dernière page">  &nbsp; 
 <i  size="6" style="color:green " class="fa  fa-caret-right fa-lg"></i> 
 </a>' : '<span class="disabled">&nbsp;
 <i style="color:red" class="fa fa- fa-hand-o-right fa-lg"  ></i>
@@ -237,10 +237,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
             // Prepare the paged query
             $stmt = $db->prepare('
-       SELECT * FROM etudiant where specialite="RSD"
-        ORDER BY
-            NumeroEtudiant
-			asc
+       SELECT * FROM voeux
+            where id_ens="'.$ens.'"
+      
         LIMIT
             :limit
         OFFSET
@@ -264,11 +263,23 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
 
                     {
-                        $id =$ligne["NumeroEtudiant"];
+                        $id =$ligne["id_voeux"];
 
-                        echo "<tr><td>".$id."</td><td>".$ligne["Nom"]."</td><td>".$ligne["Prenom"]."</td><td>".$ligne["DateNaissance"]."</td><td>".$ligne["specialite"]."</td>
+                        echo "<tr><td>".$ligne["etudiant"]."</td><td>".$ligne["specialite"]."</td>
 <form action='' method='post'>
-<td><input type='text' class='champ' name='moy' value=".$ligne["Moyenne"]."></td>
+<td><div class=\"progress\">
+<div class=\"progress-bar progress-bar-warning progress-bar-striped active\" role=\"progressbar\" aria-valuenow=".$ligne["avancement"]." aria-valuemin=\"0\" aria-valuemax=\"100\" style=\"width: ".$ligne["avancement"]."%\">
+        
+            <input type='number' name='pour' class=\"champ\" value=".$ligne["avancement"]." style='color:black'> 
+
+    </div>
+
+</div>
+
+
+
+
+</td>
 <td>
 <input type='hidden' name='id' value='$id'>
 <input type='submit' class=\"btn btn-outline-danger\"  name= 'submit' value='save' style='color:orangered' ></td>
@@ -308,3 +319,4 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <!-- //for bootstrap working -->
 </body>
 </html>
+

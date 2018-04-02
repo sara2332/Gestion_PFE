@@ -67,7 +67,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         <div class='row'>
             <div class='col-sm-6 col-sm-offset-1 '>
 
-                <a href='rendez_vous.php'><img src='images/ab.jpg' class='img-circle' height='100px' width='100px'></img><b><font size=5 color='#7fffd4'> Avancement travails</b></div></div><br>
+                <?php echo "    <a href='avancement.php?ens=$ens'>";?><img src='images/ab.jpg' class='img-circle' height='100px' width='100px'></img><b><font size=5 color='#7fffd4'> Avancement travails</b></div></div><br>
         <div class='row'>
 
 

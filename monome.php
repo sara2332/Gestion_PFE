@@ -164,7 +164,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                             <li ><?php echo "<a href='binome.php?etu=$etu'>";?>Binome</a></li>
                         </ul>
                     </li>
-                    <li><a href="contact.html">Affectation Themes</a></li>
+                    <li><a href="#">Affectation Themes</a></li>
                     <li><a href="logout.php">Deconnexion</a></li>
 
                 </ul>
