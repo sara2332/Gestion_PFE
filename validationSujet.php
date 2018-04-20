@@ -160,15 +160,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
                     <li class="dropdown active">
                          <a href="#" class="dropdown-toggle" data-toggle="dropdown">Valider Thèmes<b class="caret"></b></a>
-                    <ul class="dropdown-menu">
-
-                    <li><a href="#">GL</a></li>
-                    <li><a href="#">RSD</a></li>
-                    <li><a href="#">SIC</a></li>
-                </ul>
+                   
                 </li>
-                    <li ><a href="index.html">Affecter Sujet</a></li>
-                    <li><a href="contact.html">Contact</a></li>
+                   
                     <li><a href="logout.php">Deconnexion</a></li>
 
                 </ul>
@@ -306,7 +300,7 @@ $stmt->bindColumn(2, $cover, PDO::PARAM_LOB);
 echo "<td>".$ligne["intitule"]."</td><td align='center'>".$ligne["specialite"]."</td>
 <td align='center' ><form action='' method='post'>
 <select  class=\"selectpicker\" data-style=\"btn-default
-\" multiple name='specialite[]'>
+\" multiple name='specialite[]' required>
 <option value='GL'> GL </option>
 <option value='RSD'> RSD </option>
 <option value='SIC'> SIC </option>

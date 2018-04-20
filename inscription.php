@@ -13,16 +13,29 @@ if(isset($_POST['submit1'])) {
         $ps = $db->prepare("insert into etudiant(Nom,Prenom,DateNaissance,specialite,login,password) values(?,?,?,?,?,?)");
         $params = array($nom, $prenom, $dateN, $specialite, $login, $passwor);
         $ps->execute($params);
+        if ($ps) {
+            echo "Inscription avec succées ...";
+        }
+        header("Location:acceuil.php?");
+
     } elseif (empty($_POST['specialite']) and empty($_POST['date_n']) and (!empty($_POST['grade']))) {
 
         $ps1 = $db->prepare("insert into enseignant(Nom,Prenom,Grade,login,password) values(?,?,?,?,?)");
         $params = array($nom, $prenom,$grade, $login, $passwor);
         $ps1->execute($params);
+        if ($ps1) {
+            echo "Inscription avec succées ...";
+        }
+        header("Location:acceuil.php?");
     } elseif (empty($_POST['specialite']) and empty($_POST['grade']) and empty($_POST['date_n'])) {
 
         $ps2 = $db->prepare("insert into administrateur(nom,prenom,login,password) values(?,?,?,?)");
         $params = array($nom,$prenom,$login,$passwor);
         $ps2->execute($params);
+        if ($ps2) {
+            echo "Inscription avec succées ...";
+        }
+        header("Location:acceuil.php?");
     } else {
         header("location:acceuil.php");
     }

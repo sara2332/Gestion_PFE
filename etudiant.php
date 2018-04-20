@@ -58,7 +58,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         <div class='row'>
             <div class='col-sm-8 col-sm-offset-3'>
 
-                <a href='#'> <img src='images/g3.jpg' class='img-circle' height='100px' width='100px'/><b><font size=5 color='#ff4500'> Liste Sujet</font></b></a></br></div></div><br>
+                  <?php echo " <a href='theme.php?etu=$etu'>";?>  <img src='images/g3.jpg' class='img-circle' height='100px' width='100px'/><b><font size=5 color='#ff4500'> Liste Sujet</font></b></a></br></div></div><br>
 
 
 

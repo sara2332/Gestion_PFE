@@ -17,7 +17,7 @@ $total = $db->prepare('
 $params=array($etu);
 
 $total->execute($params);
-$sql=$total->fetch();
+$sql=$total->fetch(PDO::FETCH_ASSOC);
 
 
 ?>
@@ -154,7 +154,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             </ul>
             <div class="collapse navbar-collapse navbar-right" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
-                    <li ><a href="acceuil.php">Themes</a></li>
+                    <li ><?php echo "<a href='theme.php?etu=$etu'>";?>Themes</a></li>
 
 
                     <li  class="dropdown active" >
@@ -225,7 +225,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
                                 echo"
 
-<select name='choix1' >
+<select name='choix1' required>
 
 ";
                                 foreach($st as $row){
@@ -254,7 +254,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
                                 echo"
 
-<select name='choix2' >
+<select name='choix2' required >
 
 ";
                                 foreach($st as $row){
@@ -284,7 +284,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
                                 echo"
 
-<select name='choix3' >
+<select name='choix3' required >
 
 ";
                                 foreach($st as $row){
@@ -312,7 +312,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
                                 echo"
 
-<select name='choix4' >
+<select name='choix4' required >
 
 ";
                                 foreach($st as $row){
@@ -340,7 +340,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
                                 echo"
 
-<select name='choix5' >
+<select name='choix5' required>
 
 ";
                                 foreach($st as $row){

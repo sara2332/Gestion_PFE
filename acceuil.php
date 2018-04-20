@@ -27,17 +27,81 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 body {font-family: Arial, Helvetica, sans-serif;}
 
 /* Full-width input fields */
-input[type=text], input[type=password] {
-    width: 100%;
-    padding: 12px 20px;
-    margin: 8px 0;
-    display: inline-block;
-    border: 1px solid #ccc;
-    box-sizing: border-box;
+
+
+.form {
+  position: relative;
+  z-index: 1;
+  background: #FFFFFF;
+  max-width: 300px;
+  margin: 0 auto 100px;
+  padding: 30px;
+  border-top-left-radius: 3px;
+  border-top-right-radius: 3px;
+  border-bottom-left-radius: 3px;
+  border-bottom-right-radius: 3px;
+  text-align: center;
+}
+.form .thumbnail {
+  background: #EF3B3A;
+  width: 120px;
+  height: 120px;
+  margin: 0 auto 30px;
+  padding: 50px 30px;
+  border-top-left-radius: 100%;
+  border-top-right-radius: 100%;
+  border-bottom-left-radius: 100%;
+  border-bottom-right-radius: 100%;
+  box-sizing: border-box;
+}
+.form .thumbnail img {
+  display: block;
+  width: 100%;
+}
+.form input {
+  outline: 0;
+  background: #f2f2f2;
+  width: 100%;
+  border: 0;
+  margin: 0 0 5px;
+  padding: 15px;
+  border-top-left-radius: 3px;
+  border-top-right-radius: 3px;
+  border-bottom-left-radius: 3px;
+  border-bottom-right-radius: 3px;
+  box-sizing: border-box;
+  font-size: 14px;
+  height:10%;
+}
+.form button {
+  outline: 0;
+  background: #EF3B3A;
+  width: 100%;
+  border: 0;
+  padding: 15px;
+  border-top-left-radius: 3px;
+  border-top-right-radius: 3px;
+  border-bottom-left-radius: 3px;
+  border-bottom-right-radius: 3px;
+  color: #FFFFFF;
+  font-size: 14px;
+  transition: all 0.3 ease;
+  cursor: pointer;
+}
+.form .message {
+  margin: 15px 0 0;
+  color: #b3b3b3;
+  font-size: 12px;
+}
+.form .message a {
+  color: #EF3B3A;
+  text-decoration: none;
+}
+.form .register-form {
+  display: none;
 }
 
-/* Set a style for all buttons */
-button {
+  button {
     background-color: red;
     color: white;
     padding: 10px 20px;
@@ -46,103 +110,54 @@ button {
     cursor: pointer;
     width: 100%;
 }
-
-button:hover {
-    opacity: 0.8;
+select {
+    padding:3px;
+    margin: 0;
+    -webkit-border-radius:4px;
+    -moz-border-radius:4px;
+    border-radius:4px;
+    -webkit-box-shadow: 0 3px 0 #ccc, 0 -1px #fff inset;
+    -moz-box-shadow: 0 3px 0 #ccc, 0 -1px #fff inset;
+    box-shadow: 0 3px 0 #ccc, 0 -1px #fff inset;
+    background: #f8f8f8;
+    color:#888;
+    border:none;
+    outline:none;
+    display: inline-block;
+    -webkit-appearance:none;
+    -moz-appearance:none;
+    appearance:none;
+    cursor:pointer;
 }
 
-/* Extra styles for the cancel button */
-.cancelbtn {
-    width: auto;
-    padding: 10px 18px;
-    background-color: #f44336;
+/* Targetting Webkit browsers only. FF will show the dropdown arrow with so much padding. */
+@media screen and (-webkit-min-device-pixel-ratio:0) {
+    select {padding-right:18px}
 }
 
-/* Center the image and position the close button */
-.imgcontainer {
-    text-align: center;
-    margin: 24px 0 12px 0;
-    position: relative;
+label {position:relative}
+label:after {
+    content:'<>';
+    font:11px "Consolas", monospace;
+    color:#aaa;
+    -webkit-transform:rotate(90deg);
+    -moz-transform:rotate(90deg);
+    -ms-transform:rotate(90deg);
+    transform:rotate(90deg);
+    right:8px; top:2px;
+    padding:0 0 2px;
+    border-bottom:1px solid #ddd;
+    position:absolute;
+    pointer-events:none;
 }
-
-img.avatar {
-    width: 40%;
-    border-radius: 50%;
-}
-
-.container {
-    padding: 16px;
-}
-
-span.psw {
-    float: right;
-    padding-top: 16px;
-}
-
-/* The Modal (background) */
-.modal {
-    display: none; /* Hidden by default */
-    position: fixed; /* Stay in place */
-    z-index: 1; /* Sit on top */
-    left: 0;
-    top: 0;
-    width: 100%; /* Full width */
-    height: 100%; /* Full height */
-    overflow: auto; /* Enable scroll if needed */
-    background-color: rgb(0,0,0); /* Fallback color */
-    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
-    padding-top: 60px;
-}
-
-/* Modal Content/Box */
-.modal-content {
-    background-color: #fefefe;
-    margin: 5% auto 15% auto; /* 5% from the top, 15% from the bottom and centered */
-    border: 1px solid #888;
-    width: 80%; /* Could be more or less, depending on screen size */
-}
-
-/* The Close Button (x) */
-.close {
-    position: absolute;
-    right: 25px;
-    top: 0;
-    color: #000;
-    font-size: 35px;
-    font-weight: bold;
-}
-
-.close:hover,
-.close:focus {
-    color: red;
-    cursor: pointer;
-}
-
-/* Add Zoom Animation */
-.animate {
-    -webkit-animation: animatezoom 0.6s;
-    animation: animatezoom 0.6s
-}
-
-@-webkit-keyframes animatezoom {
-    from {-webkit-transform: scale(0)} 
-    to {-webkit-transform: scale(1)}
-}
-    
-@keyframes animatezoom {
-    from {transform: scale(0)} 
-    to {transform: scale(1)}
-}
-
-/* Change styles for span and cancel button on extra small screens */
-@media screen and (max-width: 300px) {
-    span.psw {
-       display: block;
-       float: none;
-    }
-    .cancelbtn {
-       width: 100%;
-    }
+label:before {
+    content:'';
+    right:6px; top:0px;
+    width:20px; height:20px;
+    background:#f8f8f8;
+    position:absolute;
+    pointer-events:none;
+    display:block;
 }
 </style>
 <!-- start-smoth-scrolling -->
@@ -187,91 +202,57 @@ span.psw {
 						<ul class="rslides" id="slider3">
 							<li>
 								<div class="w3l_banner_info">
-									 <h4>BIENVENUE</h4>
+									 <h4>Abu Bakr Belkaid</h4>
 <button onclick="document.getElementById('id01').style.display='block'" class="hvr-underline-from-center read" style="width:auto;">Connexion</button>
 
 <div id="id01" class="modal">
   
-  <form class="modal-content animate" action="authentifier.php" method="post">
-    <div class="imgcontainer">
-      <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">&times;</span>
-    </div>
+  <div class="form" id="id01">
+        <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">&times;</span>
 
-    <div class="container">
-      <label for="uname"><b>E-mail</b></label>
-      <input type="text" placeholder="Enter Username" name="uname" required>
-
-      <label for="psw"><b>Password</b></label>
-      <input type="password" placeholder="Enter Password" name="psw" required>
-        
-      <button type="submit">Connexion</button>
-      <label>
-        <input type="checkbox" checked="checked" name="remember"> Remember me
-      </label>
-    </div>
-
-    <div class="container" style="background-color:#f1f1f1">
-      <button type="button" onclick="document.getElementById('id02').style.display='none'" class="cancelbtn">Annuler</button>
-      <span class="psw">Forgot <a href="#">password?</a></span>
-    </div>
-  </form>
-</div>	
-<button onclick="document.getElementById('id02').style.display='block'" style="width:auto;">Inscrivez-Vous</button>
-
-<div id="id02" class="modal">
-  <span onclick="document.getElementById('id02').style.display='none'" class="close" title="Close Modal">&times;</span>
-  <form class="modal-content" action="inscription.php" method="post" enctype="multipart/form-data">
-    <div class="container">
-      <h1>Inscription</h1>
-      <hr>
-		<label for="nom"><b>Nom</b></label>
-		<input type="text" placeholder="Entrer nom" name="nom" required>
-		<label for="prenom"><b>Prénom</b></label>
-		<input type="text" placeholder="Entrer prenom" name="prenom" required>
-		<label for="date_n"><b>Date Naissance(*Etudiant)</b></label>
-		<input type="date" placeholder="Entrer la date de naissance" name="date_n">&nbsp;&nbsp;&nbsp;
-		<label for="specialite"><b>Spécialité(*Etudiant)</b></label>
-		<select  name="specialite">
-            <option ></option>
+  <div class="thumbnail"><img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/169963/hat.svg"/></div>
+  <form class="register-form" method="post" action="authentifier.php">
+    <input type="text" placeholder="Entrer nom" name="nom" required />
+	<input type="text" placeholder="Entrer prenom" name="prenom" required>
+	<b>(*Etudiant)</b><input type="date" placeholder="Entrer la date de naissance" name="date_n">
+	<b>(*Etudiant)</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	<select  name="specialite">
+            <option > Specialite</option>
 
             <option value='GL'> GL </option>
 			<option value='RSD'> RSD </option>
 			<option value='SIC'> SIC </option>
 			<option value='MID'> MID </option>
 
-		</select>&nbsp;&nbsp;&nbsp;
-		<label for="grade"><b>Grade (*Enseignant)</b></label>
+		</select> 
+		<br>
+		<b>(*Enseignant)</b>
+		
 		<select  name="grade">
-            <option  ></option>
+		
+            <option  >Grade</option>
 
             <option value='MCA'> MCA </option>
 			<option value='MAA'> MAA </option>
 			<option value='MCB'> MCB </option>
 			<option value='MAB'> MAB </option>
 			<option value='Professeur'> Professeur </option>
-
-		</select><br><br>
-
-		<label for="email"><b>Email</b></label>
-      <input type="text" placeholder="Entrer Email" name="email" required>
-
-      <label for="psw"><b>Password</b></label>
-      <input type="password" placeholder="Enter Password" name="psw" required>
-
-      <label for="psw-repeat"><b>Repeat Password</b></label>
-      <input type="password" placeholder="Repeat Password" name="psw-repeat" required>
-      
-      <label>
-        <input type="checkbox" checked="checked" name="remember" style="margin-bottom:15px"> Remember me
-      </label>
-
-
-      <div class="clearfix">
-        <button type="button" onclick="document.getElementById('id02').style.display='none'" class="cancelbtn">Annuler</button>
-        <button type="submit" name="submit1"  class="signupbtn"></button>
-      </div>
-    </div>
+		</select>
+    <input type="password" placeholder="password" name="psw" required />
+<input type="text" placeholder="Entrer Email" name="email" required>
+<button type="submit" name="submit1"   >Inscription</button>
+    <p class="message"> <a href="#">Connexion</a></p>
   </form>
+  <form class="login-form" action="authentifier.php" method="post">
+    <input type="text" placeholder="username" name="uname"/>
+    <input type="password" placeholder="password" name="psw"/>
+<button type="submit" name="submit" >Connexion</button>
+    <p class="message"> <a href="#">Inscrivez-Vous</a></p>
+  </form>
+</div>
+</div>	
+
+  
 </div>
 
 							</div>
@@ -283,7 +264,7 @@ span.psw {
 
 				
 						</div>			
-					</div>
+					
 <!-- //banner -->	
 <!-- about -->
    <div class="about" id="about">
@@ -499,5 +480,7 @@ window.onclick = function(event) {
     }
 }
 </script>
+    <script  src="js/index.js"></script>
+
 </body>
 </html>

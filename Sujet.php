@@ -16,30 +16,11 @@ $total = $db->prepare('
 $params=array($ens);
 
 $total->execute($params);
-$sql=$total->fetch(PDO::FETCH_ASSOC);
-
+$sq=$total->fetch(PDO::FETCH_ASSOC);
 
 ?>
 
-<?php
-include("cnxbdd.php");
-if(isset($_POST['submit'])) {
-    $sql1=$db->prepare('select nbr from nbrsujet');
-    $sql1->execute();
-    $result = $sql1->fetch();
 
-    /** @var TYPE_NAME $result  renvoi le nbr de sujet proposée par chaque enseignant*/
-    for ($i = 1; $i <= $result ['nbr']; $i++) {
-        $specialite = implode(', ', $_POST["specialite'$i'"]);
-
-        $sql = $db->prepare('insert into theme (intitule,id_ens,specialite,statut) 
- values (?,?,?,?)');
-        $params = array($_POST["titre'$i'"],$ens, $specialite, 0);
-        $sql->execute($params);
-
-    }
-}
-?>
 <!DOCTYPE html>
 <body lang="en">
 <head>
@@ -192,9 +173,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
                             <legend>Informations Personnelles:</legend>
                             <div class="row">
-                                <label class="col-sm-4"> Nom:  <?php echo ($sql['Nom'] );  ?> </label><br><br>
-                                <label class="col-sm-4"> Prénom:  <?php echo( $sql['Prenom']);   ?> </label><br><br>
-                                <label class="col-sm-4"> Grade:  <?php echo( $sql['Grade']) ;   ?> </label>
+                                <label class="col-sm-4"> Nom:  <?php echo ($sq['Nom']) ?> </label><br><br>
+                                <label class="col-sm-4"> Prénom:  <?php echo( $sq['Prenom'])?> </label><br><br>
+                                <label class="col-sm-4"> Grade:  <?php echo( $sq['Grade'])?> </label>
 
                             </div><br>
                         </fieldset>
@@ -202,20 +183,13 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                             <fieldset >
 
                                 <legend>Liste du theme:</legend>
-                                <?php
-                                $sql=$db->prepare('select nbr from nbrsujet');
-                                $sql->execute();
-                                $result = $sql->fetch();
-
-                                for ($i = 1; $i <=$result['nbr']; $i++) {
-                                    echo "
+                              
                            
                             <div class='col-sm-12'>
 
                             <div class='row'>
-                                <label class='col-sm-2 col-sm-offset-4' >Theme $i</label><br>
-                                <select class=\"selectpicker\" data-style=\"btn-default
-\" multiple name=\"specialite'$i'[]\">
+                                <label class='col-sm-2 col-sm-offset-4' >Theme </label><br>
+                                <select class=\"selectpicker\" data-style="btn-default" multiple name="specialite[]" required>
 <option value='GL'> GL </option>
 <option value='RSD'> RSD </option>
 <option value='SIC'> SIC </option>
@@ -223,13 +197,13 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
 
 </select>
-                                <label class='col-sm-2'>Intitule</label><input class='col-sm-6 ' type='text' name=\"titre'$i'\"/>
+                                <label class='col-sm-2'>Intitule</label><input class='col-sm-6 ' type='text' name="titre"required/>
                                 
-                            </div></div> ";}
+                            </div></div> 
 
-                                ?>
+                                
                         </div>
-                        <div class="col-md-6 col-md-offset-5"> </label class="inline"> <input  type='submit' name='submit' class='btn btn-danger' value='Enregistrer'  ></div>
+                        <div class="col-md-6 col-md-offset-5"> </label class="inline"> <input id="addon"  type='submit' name='submit' class='btn btn-danger' value='Enregistrer'  ></div>
                 </fieldset>
             </form>
         </div>
@@ -237,7 +211,52 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 </div>
 </body>
 </html>
+<script>
+$(function(){
+  var count = 3,
+      $btn = $("#addon"); 
+      //Or which ever you want
+      //Change the label of $btn
+      //$btn.val($btn.val()+' ('+count+')')
+      
+  $btn.click(function(){
+      $btn.val($btn.val().replace(count,count-1));
+      count--;
+      if(count==0) {
+            return !$btn.attr('disabled','disabled');
+        /* FOR HYPERLINK
+        return !$btn.unbind('click');
+        */
+      }
+  })
+  
+  //Adding GROUP of elements ONCLICK
+    $("#addon").click(function() {
 
+  <?php
+include("cnxbdd.php");
+if(isset($_POST['submit'])) {
+    $sql1=$db->prepare('select nbr from nbrsujet');
+    $sql1->execute();
+    $result = $sql1->fetch();
+
+    /** @var TYPE_NAME $result  renvoi le nbr de sujet proposée par chaque enseignant*/
+        $specialite = implode(', ', $_POST["specialite"]);
+
+        $sql = $db->prepare('insert into theme (intitule,id_ens,specialite,statut) 
+ values (?,?,?,?)');
+        $params = array($_POST["titre"],$ens, $specialite, 0);
+        $sql->execute($params);
+
+    
+}
+?>
+  }); 
+});
+HTML
+
+
+</script>
 <script src="jquery-1.12-0.min.js"></script>
 <script src="js/bootstrap.min.js"></script>
 <script src="bootbox.min.js"></script>

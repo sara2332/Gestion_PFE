@@ -20,7 +20,21 @@ $sql=$total->fetch();
 
 
 ?>
+<?php
+include("cnxbdd.php");
 
+$to = $db->prepare('
+        SELECT
+          *
+        FROM
+            etudiant where specialite= ?');
+$params=array($sql['specialite']);
+
+$to->execute($params);
+$s=$to->fetchAll();
+
+
+?>
 <?php
 include("cnxbdd.php");
 if (isset($_POST['submit'])) {
@@ -170,7 +184,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             </ul>
             <div class="collapse navbar-collapse navbar-right" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
-                    <li ><a href="acceuil.php">Themes</a></li>
+                    <li ><?php echo "<a href='theme.php?etu=$etu'>";?>Themes</a></li>
 
 
                     <li  class="dropdown active" >
@@ -218,8 +232,10 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                             <label class="col-sm-6"> Prénom etudiant(1):  <?php echo( $sql['Prenom'])    ?></label><br><br>
                             <form method="post" action="" enctype="multipart/form-data"  >
 
-                            <label class="col-sm-4"> Nom etudiant(2): </label><input type="text" name="nom2"/><br><br>
-                            <label class="col-sm-4"> Prénom etudiant(2):</label> <input type="text" name="prenom2"/><br><br>
+                            <label class="col-sm-4"> Nom etudiant(2): </label><?php  foreach($s as $row){
+							echo "<select name='nom2'><option value='".$row['Nom']."'>".$row['Nom']."</</option></select>";}?><br><br>
+                            <label class="col-sm-4"> Prénom etudiant(2):</label> <?php foreach($s as $row){
+							echo "<select name='prenom2'><option value='".$row['Prenom']."'>".$row['Prenom']."</option></select>";}?><br><br>
                                 <label class="col-sm-4"> Date De Naissance :</label> <input type="date" name="date2"/><br><br>
 
                                 <label class="col-sm-4"> Spécialité:  <?php echo( $sql['specialite'])    ?></label>
