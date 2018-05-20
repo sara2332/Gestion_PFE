@@ -21,6 +21,7 @@ $sq=$total->fetch(PDO::FETCH_ASSOC);
 ?>
 
 
+
 <!DOCTYPE html>
 <body lang="en">
 <head>
@@ -189,26 +190,37 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
                             <div class='row'>
                                 <label class='col-sm-2 col-sm-offset-4' >Theme </label><br>
-                                <select class=\"selectpicker\" data-style="btn-default" multiple name="specialite[]" required>
-<option value='GL'> GL </option>
-<option value='RSD'> RSD </option>
-<option value='SIC'> SIC </option>
-<option value='MID'> MID </option>
+                             <?php 
 
+$f=$sq['specialite'];
+$pieces = explode(',', $f);
+							 
+foreach($pieces as $row){
+	echo"
+&nbsp;&nbsp;<input  type='checkbox' name='specialite[]' value='".$row."'>".$row." </input>";
+}
 
-</select>
-                                <label class='col-sm-2'>Intitule</label><input class='col-sm-6 ' type='text' name="titre"required/>
-                                
-                            </div></div> 
+?>
+
+                                <label class='col-sm-2'>Intitule</label><input class='col-sm-6 ' type='text' name="titre" required /> <br>
+
+                            </div><br>
+							                            <div class='row'>
+                               <label class='col-sm-2'>Explication</label><textarea class='col-sm-6' name="desc" rows="5" ></textarea>
+
+								<br>						
+														</div><br>
+							
+							</div> <br>
 
                                 
                         </div>
-                        <div class="col-md-6 col-md-offset-5"> </label class="inline"> <input id="addon"  type='submit' name='submit' class='btn btn-danger' value='Enregistrer'  ></div>
-                </fieldset>
-            </form>
+                        <div class="col-md-6 col-md-offset-5"> </label class="inline"> <input id="addon"  type='submit' name='submit' class='btn btn-danger' value='Enregistrer'  ></div> <br>
+                </fieldset><br>
+            </form><br>
         </div>
     </div>
-</div>
+</div><br>
 </body>
 </html>
 <script>
