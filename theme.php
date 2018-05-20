@@ -115,14 +115,14 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             <div class="collapse navbar-collapse navbar-right" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
                    
-                    <li ><a href="acceuil.php">Themes</a></li>
+                    <li  class="active"><a href="#">Themes</a></li>
 
 
-                    <li  class="dropdown active" >
+                    <li   >
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">Fiche de Voeux <b class="caret"></b></a>
                         <ul class="dropdown-menu">
                             <li ><?php echo "<a href='monome.php?etu=$etu'>";?>Monome</a></li>
-                            <li class="active"><a href="#">Binome</a></li>
+                            <li ><?php echo "<a href='binome.php?etu=$etu'>";?>Binome</a></li>
                         </ul>
                     </li>
                     <li><a href="#">Affectation Themes</a></li>

@@ -4,7 +4,17 @@ author URL: http://w3layouts.com
 License: Creative Commons Attribution 3.0 Unported
 License URL: http://creativecommons.org/licenses/by/3.0/
 -->
+<?php
+include("cnxbdd.php");
 
+
+ $stmt = $db->prepare('
+       SELECT * FROM  specialite
+');	
+$params=array();
+$stmt->execute($params);
+$st=$stmt->fetchAll();
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -23,6 +33,16 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
 <link href='//fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,400italic,600,600italic,700,700italic,800,800italic' rel='stylesheet' type='text/css'>
 <meta name="viewport" content="width=device-width, initial-scale=1">
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.7.5/css/bootstrap-select.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.7.5/js/bootstrap-select.min.js"></script>
+
+
+    <!-- for-mobile-apps -->
+    
+    
 <style>
 body {font-family: Arial, Helvetica, sans-serif;}
 
@@ -111,7 +131,7 @@ body {font-family: Arial, Helvetica, sans-serif;}
     width: 100%;
 }
 select {
-    padding:3px;
+    padding:8px;
     margin: 0;
     -webkit-border-radius:4px;
     -moz-border-radius:4px;
@@ -119,7 +139,7 @@ select {
     -webkit-box-shadow: 0 3px 0 #ccc, 0 -1px #fff inset;
     -moz-box-shadow: 0 3px 0 #ccc, 0 -1px #fff inset;
     box-shadow: 0 3px 0 #ccc, 0 -1px #fff inset;
-    background: #f8f8f8;
+  background: #f2f2f2;
     color:#888;
     border:none;
     outline:none;
@@ -210,36 +230,44 @@ label:before {
   <div class="form" id="id01">
         <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">&times;</span>
 
-  <div class="thumbnail"><img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/169963/hat.svg"/></div>
-  <form class="register-form" method="post" action="authentifier.php">
+  <div class="thumbnail"><img src="images/hat.svg"/></div>
+  <form class="register-form" method="post" action="inscription.php" enctype="multipart/form-data">
     <input type="text" placeholder="Entrer nom" name="nom" required />
 	<input type="text" placeholder="Entrer prenom" name="prenom" required>
-	<b>(*Etudiant)</b><input type="date" placeholder="Entrer la date de naissance" name="date_n">
-	<b>(*Etudiant)</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-	<select  name="specialite">
-            <option > Specialite</option>
+	<b>(*Etudiant)</b><input type="date" placeholder="Entrer la date de naissance" name="date_n" >
+	
+<?php
+echo"
 
-            <option value='GL'> GL </option>
-			<option value='RSD'> RSD </option>
-			<option value='SIC'> SIC </option>
-			<option value='MID'> MID </option>
+<select multiple name='specialite[]' class=\"selectpicker\" data-style=\"btn-default\" >
+<option >Selectionner une specialite:</option>
 
-		</select> 
+";
+foreach($st as $row){
+	echo"
+<option value='". $row['specialite'] ."'> ". $row['specialite'] ."</option>";
+}
+echo"
+
+</select>
+";
+
+?> 
 		<br>
-		<b>(*Enseignant)</b>
 		
-		<select  name="grade">
+		<select  name="grade" class="selectpicker" data-style="btn-default">
 		
-            <option  >Grade</option>
+            <option  >Grade (*Enseignant)</option>
 
             <option value='MCA'> MCA </option>
 			<option value='MAA'> MAA </option>
 			<option value='MCB'> MCB </option>
 			<option value='MAB'> MAB </option>
 			<option value='Professeur'> Professeur </option>
-		</select>
+		</select><br>
+		<input type="text" placeholder="Entrer Email" name="email" required>
+
     <input type="password" placeholder="password" name="psw" required />
-<input type="text" placeholder="Entrer Email" name="email" required>
 <button type="submit" name="submit1"   >Inscription</button>
     <p class="message"> <a href="#">Connexion</a></p>
   </form>
@@ -247,7 +275,7 @@ label:before {
     <input type="text" placeholder="username" name="uname"/>
     <input type="password" placeholder="password" name="psw"/>
 <button type="submit" name="submit" >Connexion</button>
-    <p class="message"> <a href="#">Inscrivez-Vous</a></p>
+    <p class="message" > <a href="#">Inscrivez Vous</a></p>
   </form>
 </div>
 </div>	
@@ -454,7 +482,6 @@ label:before {
 		});
 	});
 </script>
-	<script src="js/bootstrap.js"></script>
 <!-- //for bootstrap working -->
 
 <script>
@@ -481,6 +508,8 @@ window.onclick = function(event) {
 }
 </script>
     <script  src="js/index.js"></script>
-
+<script src="jquery-1.12-0.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="bootbox.min.js"></script>
 </body>
 </html>

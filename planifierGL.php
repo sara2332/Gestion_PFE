@@ -4,113 +4,29 @@ if(!(isset($_SESSION['administrateur']))){
     header("location:acceuil.php");
 }
 $admin=$_GET['admin'];
+
 ?>
+
 <?php
-include("cnxbdd.php");
 if(isset($_POST['submit']))
 {
 	
-	$tot = $db->prepare('
-        SELECT *  FROM fichevoeux   where specialite="GL" ORDER BY    moyenne desc');
-    $params=array();
-    $tot->execute($params);
-
-while ($ligne = $tot->fetch() ) {
-            
-if ($ligne["choix1"]!=""   ){
-
-    
-    $total = $db->prepare('
-        SELECT
-          Nom,Prenom,id_ens
-        FROM
-            enseignant where id_ens in (select id_ens from theme where intitule=?)');
-    $params=array($ligne["choix1"]);
-    $total->execute($params);
-    $sql=$total->fetch();
-$nom=$sql['Nom'] . " " . $sql['Prenom'];
-$id_ens=$sql['id_ens'];
-    $sql1 = $db->prepare('
-        insert into voeux(etudiant,encadreur,specialite,theme,avancement,id_ens)
-            values (?,?,"GL",?,0,?)');
-    $params = array($ligne["etudiant"],$nom,$ligne["choix1"],$id_ens);
-    $sql1->execute($params);
-    $sql2 = $db->prepare(' update fichevoeux set voeux=? where etudiant=?');
-    $params = array($ligne["choix1"],$ligne["etudiant"]);
-    $sql2->execute($params);
-	
-	$sql5 = $db->prepare(' update fichevoeux set choix1="" where choix1=? and specialite="GL"');
-    $params = array($ligne["choix1"]);
-    $sql5->execute($params);
-	
-	$sql6 = $db->prepare('update fichevoeux set choix2="" where choix2=? and specialite="GL"');
-    $params = array($ligne["choix1"]);
-    $sql6->execute($params);
-	
-	$sql7 = $db->prepare('
-        update fichevoeux set choix3="" where choix3=? and specialite="GL"');
-    $params = array($ligne["choix1"]);
-    $sql7->execute($params);
-	
-	$sql8 = $db->prepare(' 
-        update fichevoeux set choix4="" where choix4=? and specialite="GL"');
-    $params = array($ligne["choix1"]);
-    $sql8->execute($params);
-	$sql9 = $db->prepare('
-        update fichevoeux set choix5="" where choix5=? and specialite="GL"');
-    $params = array($ligne["choix1"]);
-    $sql9->execute($params);
-}	
-}
-/*else if ($ligne["choix1"]=="" and $ligne["choix2"]!=""){
- $total = $db->prepare('
-        SELECT
-          Nom,Prenom,id_ens
-        FROM
-            enseignant where id_ens in (select id_ens from theme where intitule=?)');
-    $params=array($ligne["choix2"]);
-    $total->execute($params);
-    $sql=$total->fetch();
-$nom=$sql['Nom'] . " " . $sql['Prenom'];
-$id_ens=$sql['id_ens'];
-    $sql1 = $db->prepare('
-        insert into voeux(etudiant,encadreur,specialite,theme,avancement,id_ens)
-            values (?,?,"GL",?,0,?)');
-    $params = array($ligne["etudiant"],$nom,$ligne["choix2"],$id_ens);
-    $sql1->execute($params);
-    $sql2 = $db->prepare(' update fichevoeux set voeux=? where etudiant=?');
-    $params = array($ligne["choix2"],$ligne["etudiant"]);
-    $sql2->execute($params);
-	
-	$sql5 = $db->prepare(' update fichevoeux set choix1="" where choix1=? and specialite=GL');
-    $params = array($ligne["choix2"]);
-    $sql5->execute($params);
-	
-	$sql6 = $db->prepare('update fichevoeux set choix2="" where choix2=? and specialite=GL');
-    $params = array($ligne["choix2"]);
-    $sql6->execute($params);
-	
-	$sql7 = $db->prepare('
-        update fichevoeux set choix3="" where choix3=? and specialite=GL');
-    $params = array($ligne["choix2"]);
-    $sql7->execute($params);
-	
-	$sql8 = $db->prepare(' 
-        update fichevoeux set choix4="" where choix4=? and specialite=GL');
-    $params = array($ligne["choix2"]);
-    $sql8->execute($params);
-	$sql9 = $db->prepare('
-        update fichevoeux set choix5="" where choix5=? and specialite=GL');
-    $params = array($ligne["choix2"]);
-    $sql9->execute($params);
-	
-}*/
-
-}
-
-
+	$tot = $db->prepare('select * from voeux limit 5
+	');
+$t = $db->prepare('select date_d,date_f from nbrsujet ');
+$ft=$t->fetch();
+	while ($res=$tot->fetch())
+	{ 
+		$total = $db->prepare('insert into soutenance values(
+		
+	}
 
 ?>
+
+
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -129,8 +45,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     <!-- js -->
     <style>
         .border {
-    border: 1px solid #009;
-    -webkit-border-radius: 10px;
+            border: 1px solid #009;
+            -webkit-border-radius: 10px;
             -moz-border-radius: 10px;
             border-radius: 10px;
             -webkit-box-shadow: 4px 4px 5px rgba(50, 50, 50, 0.75);
@@ -138,18 +54,21 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             box-shadow: 4px 4px 5px rgba(50, 50, 50, 0.75);
             Background-Color: #BCC4C3
         ;
+
+
         }
         label {
-    display: block;
-    margin-left: 3px;
+            display: block;
+            margin-left: 3px;
             padding-top: 2px;
             text-shadow: 2px 2px 3px rgba(150, 150, 150, 0.75);
             font-family:Verdana, Geneva, sans-serif;
             font-size:.9em;
         }
+
         legend {
-    color:red;
-    text-shadow: 2px 2px 3px rgba(150, 150, 150, 0.75);
+            color:red;
+            text-shadow: 2px 2px 3px rgba(150, 150, 150, 0.75);
             font-family:Verdana, Geneva, sans-serif;
             font-size:1.4em;
             border-top: 2px solid #009;
@@ -161,6 +80,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             box-shadow: 4px 4px 5px rgba(50, 50, 50, 0.75);
             padding: 3px;
         }
+
+
     </style>
     <script type="text/javascript" src="js/jquery-2.1.4.min.js"></script>
     <!-- //js -->
@@ -170,12 +91,12 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     <script type="text/javascript" src="js/move-top.js"></script>
     <script type="text/javascript" src="js/easing.js"></script>
     <script type="text/javascript">
-    jQuery(document).ready(function($) {
-        $(".scroll").click(function(event){
-            event.preventDefault();
-            $('html,body').animate({scrollTop:$(this.hash).offset().top},1000);
+        jQuery(document).ready(function($) {
+            $(".scroll").click(function(event){
+                event.preventDefault();
+                $('html,body').animate({scrollTop:$(this.hash).offset().top},1000);
             });
-    });
+        });
     </script>
     <!-- start-smoth-scrolling -->
 </head>
@@ -218,14 +139,15 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                     <li  class="dropdown active" >
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">Affectation Sujet <b class="caret"></b></a>
                         <ul class="dropdown-menu">
-                            <li class="active" ><a href="#">GL</a></li>
-                            <li >  <?php echo " <a href='affecterRSD.php?admin=$admin'>";?>RSD</a></li>
-                            <li ><?php echo "<a href='affecterSIC.php?admin=$admin'>";?>SIC</a></li>
+                            <li  ><?php echo "<a href='affecterGL.php?admin=$admin'>";?>GL</a></li>
+                            <li ><?php echo "  <a href='affecterRSD.php?admin=$admin'>";?>RSD</a></li>
+                            <li class=\"active\"><?php echo "<a href='#'>";?>SIC</a></li>
                             <li ><?php echo "<a href='affecterMID.php?admin=$admin'>";?>MID</a></li>
+
 
                         </ul>
                     </li>
-                    <li ><?php echo "<a href='planifierGL.php?admin=$admin'>";?>Planifier Soutenance</a></li>
+                    <li><a href="contact.html">Contact</a></li>
                     <li><a href="logout.php">Deconnexion</a></li>
 
                 </ul>
@@ -233,11 +155,11 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             <!-- /.navbar-collapse -->
         </nav>
         <script>
-$('ul.nav li.dropdown').hover(function() {
-    $(this).find('.dropdown-menu').stop(true, true).delay(200).fadeIn(500);
-}, function() {
-    $(this).find('.dropdown-menu').stop(true, true).delay(200).fadeOut(500);
-});
+            $('ul.nav li.dropdown').hover(function() {
+                $(this).find('.dropdown-menu').stop(true, true).delay(200).fadeIn(500);
+            }, function() {
+                $(this).find('.dropdown-menu').stop(true, true).delay(200).fadeOut(500);
+            });
         </script>
     </div>
     <div class="clearfix"></div>
@@ -251,23 +173,21 @@ $('ul.nav li.dropdown').hover(function() {
 <body>
 </br>
 <div class="container">
-    <div class="col-sm-12">
+    <div class="col-sm-8">
         <fieldset  class="border" style="width:1150px;">
             <legend>Liste des Etudiants:</legend>
 
-                <table border="1" style="width:1100px "  class="table table-striped table-hover table-bordered "><thead>
+                <table border="1" style="width:1000px "  class="table table-striped table-hover table-bordered "><thead>
 
 
                     <tr>
-                        <th align="center" > Etudiant </th>
-                        <th align="center">Voeux</th>
-                        <th align="center"  style="width:120px ">Affecter</th>
-                     <th align="center" style="width:5px">Moyenne</th>
+                        <th align="center"> Etudiant </th>
+						<th align="center"> Thème </th>
+                        <th align="center">Encadreur</th>
 
-
-
-                    </tr></thead></fieldset>
-<?php
+                 
+                    </tr></thead></form></fieldset>
+       <?php
 include("cnxbdd.php");
 try {
     // Find out how many items are in the table
@@ -275,7 +195,7 @@ try {
         SELECT
             COUNT(*)
         FROM
-            fichevoeux where specialite="GL"
+            voeux where specialite="GL"
     ')->fetchColumn();
     // How many items to list per page
     $limit = 10;
@@ -311,10 +231,8 @@ try {
     // Display the paging information
     // Prepare the paged query
     $stmt = $db->prepare('
-       SELECT * FROM fichevoeux where specialite="GL"
-        ORDER BY
-            moyenne
-			desc
+       SELECT * FROM voeux where specialite="GL"
+       
         LIMIT
             :limit
         OFFSET
@@ -334,24 +252,16 @@ try {
         // Display the results
         foreach ($iterator as $ligne) {
             
-                $id =$ligne["id"];
-                echo "<tr><td>".$ligne["etudiant"]."</td><td>".$ligne["voeux"]."</td><td >
-<form method='post' action=''>
-<select class=\"selectpicker\" data-width=\"auto\" name='choix'>
-  <option value='".$ligne["choix1"]."' selected='selected'>".$ligne["choix1"]."</option>
-    <option value='".$ligne["choix2"]."'>".$ligne["choix2"]."</option>
-  <option value='".$ligne["choix3"]."'>".$ligne["choix3"]."</option>
-  <option value='".$ligne["choix4"]."'>".$ligne["choix4"]."</option>
-  <option value='".$ligne["choix5"]."'>".$ligne["choix5"]."</option>
-  <input type='hidden'  name= 'etudiant' value='".$ligne["etudiant"]."' >
-</select>
-</td><td><b style='color:#000099'>".$ligne["moyenne"]."</b></td>
+                echo "
+				<form action='' metod='post'>
+				<tr><td>".$ligne["etudiant"]."</td><td>".$ligne["encadreur"]."</td>
+				<td><b style='color:#000099'>".$ligne["theme"]."</b></td>
 </tr>";
             
         }
 		echo "
-</table><br><input  type='submit' name= 'submit' value='Affecter' style='color:red' >
-</form>
+<br><td colspan=3 align='center'><input  type='submit' name= 'submit' value='Planifier' style='color:red' ></td>
+</form></table>
 ";
 		
         ?>
@@ -372,17 +282,3 @@ try {
     </div>
 </div>
 </div>
-
-
-
-<!-- //single -->
-<!-- Footer -->
-
-<!-- for bootstrap working -->
-<script src="js/bootstrap.js"></script>
-<!-- //for bootstrap working -->
-</body>
-</html>
-
-
-

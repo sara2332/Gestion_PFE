@@ -4,12 +4,12 @@ if(isset($_POST['submit1'])) {
     $nom = $_POST['nom'];
     $prenom = $_POST['prenom'];
     $dateN = $_POST['date_n'];
-    $specialite = $_POST['specialite'];
+    $specialite = implode(', ', $_POST['specialite']);
     $grade = $_POST['grade'];
     $login = $_POST['email'];
     $passwor = $_POST['psw'];
 
-    if (empty($_POST['grade']) and (!empty($_POST['specialite']))) {
+    if ((!empty($_POST['date_n']))) {
         $ps = $db->prepare("insert into etudiant(Nom,Prenom,DateNaissance,specialite,login,password) values(?,?,?,?,?,?)");
         $params = array($nom, $prenom, $dateN, $specialite, $login, $passwor);
         $ps->execute($params);
@@ -18,10 +18,10 @@ if(isset($_POST['submit1'])) {
         }
         header("Location:acceuil.php?");
 
-    } elseif (empty($_POST['specialite']) and empty($_POST['date_n']) and (!empty($_POST['grade']))) {
+    } elseif (empty($_POST['date_n']) and (!empty($_POST['grade']))) {
 
-        $ps1 = $db->prepare("insert into enseignant(Nom,Prenom,Grade,login,password) values(?,?,?,?,?)");
-        $params = array($nom, $prenom,$grade, $login, $passwor);
+        $ps1 = $db->prepare("insert into enseignant(Nom,Prenom,Grade,specialite,login,password) values(?,?,?,?,?,?)");
+        $params = array($nom, $prenom,$grade,$specialite, $login, $passwor);
         $ps1->execute($params);
         if ($ps1) {
             echo "Inscription avec succées ...";

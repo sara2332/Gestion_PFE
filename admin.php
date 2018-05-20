@@ -68,11 +68,11 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
        <div class='row'>
             <div class='col-sm-6 '>
 
-                <a href='#'><img src='images/ab.jpg' class='img-circle' height='100px' width='100px'></img><b><font size=5 color='white'> Avancement travails</b></div></div><br>
+                <?php echo " <a href='planifierGL.php?admin=$admin'>";?><img src='images/ab.jpg' class='img-circle' height='100px' width='100px'></img><b><font size=5 color='white'> Planifier Soutenance</b></div></div><br>
         <div class='row'>
             <div class='col-sm-8 col-sm-offset-1 '>
 
-                <a href='#'><img src='images/ab.jpg' class='img-circle' height='100px' width='100px'></img><b><font size=5 color='white'>Authorisation Soutenance</b></div></div><br>
+                 <?php echo " <a href='configuration.php?admin=$admin'>";?><img src='images/ab.jpg' class='img-circle' height='100px' width='100px'></img><b><font size=5 color='white'>Configuration</b></div></div><br>
 
 
 

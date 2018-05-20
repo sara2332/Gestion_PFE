@@ -14,11 +14,10 @@ $ens=$_GET['ens'];
 include("cnxbdd.php");
 
 
-if(isset($_POST['submit'])) {
+if(isset($_POST['valider'])) {
     $id=$_POST["id"];
-    $specialite = implode(', ', $_POST["specialite"]);
-    $sql = $db->prepare('update  theme set specialite=?,statut=? where id_theme=? ');
-    $params = array( $specialite,1,$id);
+    $sql = $db->prepare('update  theme set statut=? where id_theme=? ');
+    $params = array( 1,$id);
     $sql->execute($params);
 
 
@@ -206,7 +205,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                 <tr><th align="center"> Thème </th>
                     <th align="center">Spécialité</th>
                     <th align="center">Valider</th>
-                    <th align="center">Supprimer</th>
 
                 </tr></thead>
 
@@ -269,7 +267,7 @@ theme        ')->fetchColumn();
 
     // Prepare the paged query
     $stmt = $db->prepare('
-       SELECT * FROM theme
+       SELECT * FROM theme where statut=0;
         ORDER BY
             id_theme
 			asc
@@ -299,24 +297,14 @@ $stmt->bindColumn(2, $cover, PDO::PARAM_LOB);
 	$id1 =$ligne["id_theme"];
 echo "<td>".$ligne["intitule"]."</td><td align='center'>".$ligne["specialite"]."</td>
 <td align='center' ><form action='' method='post'>
-<select  class=\"selectpicker\" data-style=\"btn-default
-\" multiple name='specialite[]' required>
-<option value='GL'> GL </option>
-<option value='RSD'> RSD </option>
-<option value='SIC'> SIC </option>
-<option value='MID'> MID </option>
-<input type='submit' class=\"btn-save btn btn-link btn-lg\" name= 'submit' value='☑' style='color:red' >
-
-</select><br>
+<input type='submit' name='valider' value='valider'/>
 <input type='hidden'  name='id' value= '$id1' >
 
 
 </form>
 </td>
 
- <td align='center'><a class=\"delete_product\" data-id=\" $id1\" href=\"javascript:void(0)\">
-                <i style='color:black' class=\"glyphicon glyphicon-trash\"></i>
-                </a></td></tr>";
+ </tr>";
                 
                 
                 }
